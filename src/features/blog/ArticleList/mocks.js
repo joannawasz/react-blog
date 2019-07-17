@@ -1,3 +1,5 @@
+import pic from '../../../images/img-1.jpg'
+
 export const fakeData = [
     {
         id: '1',
@@ -6,7 +8,7 @@ export const fakeData = [
         author_id: 'Author 1',
         created_at: '2014-10-14', // string()
         modified_at: '2014-10-15',
-        pic: '/static/media/img-1.c526c195.jpg'
+        pic: pic
     },
     {
         id: '2',
@@ -15,7 +17,7 @@ export const fakeData = [
         author_id: 'Author 2',
         created_at: '2014-12-24', // string()
         modified_at: '2015-01-10',
-        pic: '/static/media/img-1.c526c195.jpg'
+        pic: pic
     },
     {
         id: '3',
@@ -24,7 +26,7 @@ export const fakeData = [
         author_id: 'Author 3',
         created_at: '2013-05-11', // string()
         modified_at: '2015-07-28',
-        pic: '/static/media/img-1.c526c195.jpg'
+        pic: pic
     },
     {
         id: '4',
@@ -33,7 +35,7 @@ export const fakeData = [
         author_id: 'Author 4',
         created_at: '2014-12-24', // string()
         modified_at: '2015-01-10',
-        pic: '/static/media/img-1.c526c195.jpg'
+        pic: pic
     },
     {
         id: '5',
@@ -42,7 +44,7 @@ export const fakeData = [
         author_id: 'Author 5',
         created_at: '2013-05-11', // string()
         modified_at: '2015-07-28',
-        pic: '/static/media/img-1.c526c195.jpg'
+        pic: pic
     }
 ]
 

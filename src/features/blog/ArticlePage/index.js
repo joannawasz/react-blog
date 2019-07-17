@@ -9,8 +9,8 @@ const ArticlePage = ({ match }) => {
   const comment = comments.filter(doc => doc.id === match.params.id)
 
   const loadComments = () => {
-    const el = document.querySelector('.beOifN')
-    const text = document.querySelector('.ljfhmS')
+    const el = document.querySelector('.c-comments-wrapper')
+    const text = document.querySelector('.js-comments')
 
     if (el.style.display === "block") {
       el.style.display = "none"
@@ -25,7 +25,7 @@ const ArticlePage = ({ match }) => {
     <ArticlePageWrapper>
       <ArticleFull { ...article } />
       <ButtonWrapper>
-        <ArticleButton onClick={loadComments}>
+        <ArticleButton onClick={loadComments} className="js-comments">
           Show Comments
         </ArticleButton>
       </ButtonWrapper>

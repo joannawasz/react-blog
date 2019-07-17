@@ -42,6 +42,15 @@ const ArticleInfo = styled.div `
 const ArticleBody = styled.div `
     text-align: justify;
     margin-top: 20px;
+    a {
+        margin-left: 10px;
+        text-decoration: none;
+        color: #027BFF;
+        transition: .5s all ease;
+        &:hover {
+            margin-left: 20px;
+        }
+    }
 `
 
 const ArticlePic = styled.img `
@@ -55,29 +64,11 @@ const ArticleContentWrapper = styled.div `
     padding: 0 20px;
 `
 
-const ArticleButton = styled.div `
-    margin-top: 30px;
-    padding: 0 20px;
-    width: fit-content;
-    transition: .5s all ease;
-    &:hover {
-        transform: translateX(10px);
-        a {
-            color: #027BFF;
-        }
-    }
-    a {
-        text-decoration: none !important;
-        color: #000;
-    }
-`
-
 export {
     ArticlePost,
     ArticleBody,
     ArticleHeading,
     ArticleInfo,
     ArticlePic,
-    ArticleContentWrapper,
-    ArticleButton
+    ArticleContentWrapper
 }

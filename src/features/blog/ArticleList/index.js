@@ -1,5 +1,4 @@
 import React from 'react'
-// import ReactPaginate from 'react-paginate'
 import { fakeData } from './mocks'
 import ArticleCard from '../ArticleCard'
 import {ArticleWrapper } from './styles'

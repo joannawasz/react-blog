@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-// import { breakpoints } from '../../../constants'
 
 const ArticlePageWrapper = styled.div `
     .sc-bdVaJa {

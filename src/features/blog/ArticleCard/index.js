@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ArticlePost, ArticleBody, ArticleHeading, ArticleInfo, ArticlePic, ArticleContentWrapper, ArticleButton } from './styles'
-import ReadMoreAndLess from 'react-read-more-less';
-// const cos: React.FC = () =>
+import { ArticlePost, ArticleBody, ArticleHeading, ArticleInfo, ArticlePic, ArticleContentWrapper } from './styles'
+
 class ArticleCard extends React.Component {
   render () {
     const pic = this.props.pic
+    const textBodySubstring = this.props.body.substring(0, 400)
+
     return (
       <ArticlePost>
         <ArticlePic src={pic} />
@@ -19,20 +20,12 @@ class ArticleCard extends React.Component {
             <p>Modified: <span>{this.props.modified_at}</span></p>
           </ArticleInfo>
           <ArticleBody>
-            <ReadMoreAndLess
-              charLimit={400}
-              readMoreText="Read more"
-              readLessText="Read less"
-            >
-              {this.props.body}
-            </ReadMoreAndLess>
+            {textBodySubstring}...
+            <Link to={`post/${this.props.id}`}>
+              Read more →
+            </Link>
           </ArticleBody>
         </ArticleContentWrapper>
-        <ArticleButton>
-          <Link to={`post/${this.props.id}`}>
-            Go to the article →
-          </Link>
-        </ArticleButton>
       </ArticlePost>
     )
   }
