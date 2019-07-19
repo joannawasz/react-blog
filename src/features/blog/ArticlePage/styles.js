@@ -28,7 +28,6 @@ const ArticleButton = styled.button `
 `
 
 const CommentsWrapper = styled.div `
-    display: none;
 `
 
 export {

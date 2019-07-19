@@ -8,12 +8,11 @@ class ArticleCard extends React.Component {
       pic,
       body
     } = this.props
-    const imageSrc = pic
     const textBodySubstring = body.substring(0, 400)
 
     return (
       <ArticlePost>
-        <ArticlePic src={imageSrc} />
+        <ArticlePic src={pic} />
         <ArticleContentWrapper>
           <ArticleHeading>
             {this.props.title}

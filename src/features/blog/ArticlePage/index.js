@@ -10,32 +10,22 @@ const ArticlePage = ({ match }) => {
   const [ isShowing, setIsShowing ] = useState(false)
 
   const loadComments = () => {
-    const el = document.querySelector('.c-comments-wrapper')
-    const text = document.querySelector('.js-comments')
-
-    if (isShowing === true) {
-      el.style.display = "none"
-      text.innerHTML = 'Show Comments'
-      setIsShowing(false)
-    }
-    else {
-      el.style.display = "block";
-      text.innerHTML = 'Hide Comments'
-      setIsShowing(true)
-    }
+    setIsShowing(value => !value)
   }
 
   return (
     <ArticlePageWrapper>
       <ArticleFull { ...article } />
       <ButtonWrapper>
-        <ArticleButton onClick={loadComments} className="js-comments">
-          Show Comments
+        <ArticleButton onClick={loadComments}>
+          {isShowing ? 'Hide Comments' : 'Show Comments'}
         </ArticleButton>
       </ButtonWrapper>
-      <CommentsWrapper className="c-comments-wrapper">
-        {comment.map(data => <ArticleComment {...data} key={data.post_id} />)}
-      </CommentsWrapper>
+      {isShowing &&
+        <CommentsWrapper>
+          {comment.map(data => <ArticleComment {...data} key={data.post_id} />)}
+        </CommentsWrapper>
+      }
     </ArticlePageWrapper>
   )
 }
