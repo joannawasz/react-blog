@@ -4,12 +4,16 @@ import { ArticlePost, ArticleBody, ArticleHeading, ArticleInfo, ArticlePic, Arti
 
 class ArticleCard extends React.Component {
   render () {
-    const pic = this.props.pic
-    const textBodySubstring = this.props.body.substring(0, 400)
+    const {
+      pic,
+      body
+    } = this.props
+    const imageSrc = pic
+    const textBodySubstring = body.substring(0, 400)
 
     return (
       <ArticlePost>
-        <ArticlePic src={pic} />
+        <ArticlePic src={imageSrc} />
         <ArticleContentWrapper>
           <ArticleHeading>
             {this.props.title}
