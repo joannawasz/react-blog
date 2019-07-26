@@ -6,7 +6,7 @@ const ArticlePageWrapper = styled.div `
     }
 `
 
-const ButtonWrapper = styled.div `
+const ArticleButtonWrapper = styled.div `
     display: flex;
     justify-content: center;
 `
@@ -25,14 +25,17 @@ const ArticleButton = styled.button `
         color: #fff;
         box-shadow: 0px 0px 10px #027BFF;
     }
+    &:focus {
+        outline: 0;
+    }
 `
 
-const CommentsWrapper = styled.div `
+const ArticleCommentsWrapper = styled.div `
 `
 
 export {
     ArticlePageWrapper,
     ArticleButton,
-    ButtonWrapper,
-    CommentsWrapper
+    ArticleButtonWrapper,
+    ArticleCommentsWrapper
 }

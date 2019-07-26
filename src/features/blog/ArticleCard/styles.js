@@ -1,13 +1,14 @@
 import styled from 'styled-components'
+import { breakpoints } from '../../../constants'
 
 const ArticlePost = styled.div `
-    break-inside: avoid-column;
     padding: 20px;
     margin: 20px 0;
-    max-width: 500px;
+    width: calc(50% - 40px);
     background-color: #fff;
-    &:nth-of-type(1) {
-        margin: 0;
+    @media (max-width: ${breakpoints.lg}px) {
+        width: 100%;
+        padding: 0;
     }
 `
 
@@ -24,8 +25,11 @@ const ArticleHeading = styled.div `
     color: white;
 
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     text-transform: uppercase;
+    @media (max-width: ${breakpoints.sm}px) {
+        font-size: 18px;
+    }
 `
 
 const ArticleInfo = styled.div `
@@ -33,9 +37,9 @@ const ArticleInfo = styled.div `
     justify-content: space-between;
     margin-top: 30px;
     font-size: 12px;
-    
+
     span {
-        font-size: 16px; 
+        font-size: 16px;
     }
 `
 

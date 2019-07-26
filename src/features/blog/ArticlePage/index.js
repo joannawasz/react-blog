@@ -1,32 +1,47 @@
 import React, { useState } from 'react'
 import { fakeData, comments } from '../ArticleList/mocks'
-import ArticleFull from '../ArticleFull/index'
-import ArticleComment from '../ArticleComment/index'
-import { ArticlePageWrapper, ArticleButton, ButtonWrapper, CommentsWrapper } from './styles'
+import ArticleFull from '../ArticleFull'
+import ArticleComment from '../ArticleComment'
+import { ArticlePageWrapper, ArticleButton, ArticleButtonWrapper, ArticleCommentsWrapper } from './styles'
+import CommentForm from '../CommentForm'
 
 const ArticlePage = ({ match }) => {
-  const article = fakeData.find(doc => doc.id === match.params.id)
-  const comment = comments.filter(doc => doc.id === match.params.id)
   const [ isShowing, setIsShowing ] = useState(false)
+  const [ commentList, setCommentList ] = useState(comments)
+
+  const comment = commentList.filter(doc => doc.id === match.params.id)
+  const article = fakeData.find(doc => doc.id === match.params.id)
 
   const loadComments = () => {
     setIsShowing(value => !value)
   }
 
+  const onAddComment = comment => {
+    setCommentList(commentList => [
+      ...commentList,
+      {
+        ...comment,
+        post_id: commentList.length + 1,
+        id: article.id
+      }
+    ])
+  }
+
   return (
     <ArticlePageWrapper>
       <ArticleFull { ...article } />
-      <ButtonWrapper>
+      <CommentForm onSubmit={onAddComment} />
+      <ArticleButtonWrapper>
         <ArticleButton onClick={loadComments}>
           {isShowing ? 'Hide Comments' : 'Show Comments'}
         </ArticleButton>
-      </ButtonWrapper>
+      </ArticleButtonWrapper>
       {isShowing &&
-        <CommentsWrapper>
+        <ArticleCommentsWrapper>
           {comment.map(data => <ArticleComment {...data} key={data.post_id} />)}
-        </CommentsWrapper>
+        </ArticleCommentsWrapper>
       }
-    </ArticlePageWrapper>
+      </ArticlePageWrapper>
   )
 }
 
