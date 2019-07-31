@@ -6,13 +6,13 @@ const Comment = styled.div `
     background-color: #e8e8e8;
 `
 
-const CommentAuthor = styled.div `
+const CommentAuthor = styled.p `
     span {
         font-size: 12px;
     }
 `
 
-const CommentBody = styled.div `
+const CommentBody = styled.p `
     margin-top: 40px;
     font-size: 20px;
 `

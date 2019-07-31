@@ -40,14 +40,29 @@ const CommentButton = styled.button`
   height: 56px;
   font-size: 20px;
   font-family: 'Montserrat';
-  color: white;
   border: none;
+  color: pink;
   border-radius: 10px;
-  background-color: #027BFF;
+  color: white;
+  background-color: pink;
+  opacity: 0.8;
+  box-shadow: 0px 0px 10px pink;
   opacity: 0.8;
   cursor: pointer;
+  transition: .5s all ease;
+  /* &:hover {
+    color: white;
+    background-color: pink;
+    opacity: 0.8;
+    box-shadow: 0px 0px 10px pink;
+  } */
   &:focus {
+    transform: scale(.95);
     outline: 0;
+    color: white;
+    background-color: #ff6681;
+    opacity: 0.8;
+    box-shadow: 0px 0px 10px #ff6681;
   }
 `
 

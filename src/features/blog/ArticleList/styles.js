@@ -23,7 +23,7 @@ const AddNewPost = styled.a`
     font-family: 'Montserrat';
     padding: 10px 30px;
     border-radius: 20px;
-    border: 1px solid #027BFF;
+    border: 1px solid pink;
     cursor: pointer;
 `
 

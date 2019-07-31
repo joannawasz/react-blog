@@ -33,7 +33,7 @@ const ArticlePage = ({ match }) => {
       <CommentForm onSubmit={onAddComment} />
       <ArticleButtonWrapper>
         <ArticleButton onClick={loadComments}>
-          {isShowing ? 'Hide Comments' : 'Show Comments'}
+          {isShowing ? 'hide comments' : 'show comments'}
         </ArticleButton>
       </ArticleButtonWrapper>
       {isShowing &&

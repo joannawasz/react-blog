@@ -13,17 +13,22 @@ const ArticleButtonWrapper = styled.div `
 
 const ArticleButton = styled.button `
     margin-bottom: 60px;
-    border: 1px solid #000;
+    /* border: 1px solid #000;
     background-color: #fff;
-    text-transform: uppercase;
-    padding: 20px 40px;
+    text-transform: uppercase; */
+    border: none;
+    background: none;
+    color: pink;
+    padding: 20px 0px;
     font-size: 22px;
     transition: .5s all ease;
+    cursor: pointer;
     &:hover {
-        background-color: #027BFF;
-        border-color: #027BFF;
+        /* background-color: pink;
+        border-color: pink;
         color: #fff;
-        box-shadow: 0px 0px 10px #027BFF;
+        box-shadow: 0px 0px 10px pink; */
+        color: #ff6681;
     }
     &:focus {
         outline: 0;

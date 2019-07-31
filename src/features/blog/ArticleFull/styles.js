@@ -18,24 +18,25 @@ const PostInfoWrapper = styled.div `
     background: white;
     width: 50%;
     margin-top: 15%;
-    padding: 40px 0;
+    padding: 60px 0;
 `
 
-const PostHeading = styled.div `
+const PostHeading = styled.h2 `
     text-transform: uppercase;
     font-size: 32px;
+    color: pink;
     margin-top: 80px;
     margin-bottom: 80px;
 `
 
-const PostDate = styled.div `
+const PostDate = styled.p `
     span {
         font-size: 14px;
         margin-left: 20px;
     }
 `
 
-const PostAuthor = styled.div `
+const PostAuthor = styled.p `
 `
 
 const PostBack = styled.div `
@@ -44,7 +45,7 @@ const PostBack = styled.div `
     &:hover {
         transform: translateX(-10px);
         a {
-            color: #027BFF;
+            color: pink;
         }
     }
     a {
@@ -53,8 +54,8 @@ const PostBack = styled.div `
     }
 `
 
-
-const PostBody = styled.div `
+const PostBody = styled.p `
+    margin-top: 40px;
     font-size: 20px;
     line-height: 2em;
     text-align: justify;

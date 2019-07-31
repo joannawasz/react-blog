@@ -12,19 +12,22 @@ const ArticlePost = styled.div `
     }
 `
 
-const ArticleHeading = styled.div `
-    position: absolute;
+const ArticleHeading = styled.h2 `
+    /* position: absolute;
 
-    top: -63px;
+    top: -77px;
     left: 10%;
     width: 80%;
 
-    padding: 10px 0;
+    border-radius: 20px;
 
-    background: rgba(0, 0, 0, 0.65);
-    color: white;
+    padding: 10px 0; */
 
-    text-align: center;
+    /* background: rgba(255, 192, 203, 0.65);
+    color: #333; */
+    color: pink;
+
+    /* text-align: center; */
     font-size: 22px;
     text-transform: uppercase;
     @media (max-width: ${breakpoints.sm}px) {
@@ -43,13 +46,14 @@ const ArticleInfo = styled.div `
     }
 `
 
-const ArticleBody = styled.div `
+const ArticleBody = styled.p `
     text-align: justify;
     margin-top: 20px;
+    line-height: 1.5;
     a {
         margin-left: 10px;
         text-decoration: none;
-        color: #027BFF;
+        color: pink;
         transition: .5s all ease;
         &:hover {
             margin-left: 20px;
