@@ -23,8 +23,6 @@ const ArticleList = () => {
     ])
   }
 
-  console.log(articleList)
-
   return (
     <ArticleListPage>
         {/* <AddNewPostWrapper>
