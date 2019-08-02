@@ -40,13 +40,16 @@ const ArticleInfo = styled.div`
 
 const ArticleBody = styled.p`
   margin-top: 20px;
+
   text-align: justify;
   line-height: 1.5;
 
   a {
     margin-left: 10px;
+
     text-decoration: none;
     color: pink;
+
     transition: 0.5s all ease;
 
     &:hover {
