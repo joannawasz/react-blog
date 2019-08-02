@@ -8,6 +8,7 @@ class ArticleCard extends React.Component {
       pic,
       body
     } = this.props
+
     const textBodySubstring = body.substring(0, 400)
 
     return (

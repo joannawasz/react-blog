@@ -9,7 +9,7 @@ class ArticleList extends React.Component {
 
     this.state = {
       loading: false,
-      data: [],
+      articles: [],
       total: 0
     }
 
@@ -17,10 +17,12 @@ class ArticleList extends React.Component {
   }
 
   showMore() {
-    this.setState((prev) => {
+    this.setState(state => {
+      const { articles } = state
+      const fetchedArticles = fakeData.slice(articles.length, articles.length + 2)
       return {
-        total: prev.total + 2,
-        data: [...fakeData]
+        total: fakeData.length,
+        articles: [...articles, ...fetchedArticles]
       }
     })
   }
@@ -30,13 +32,17 @@ class ArticleList extends React.Component {
   }
 
   render() {
+    const {
+      loading,
+      total,
+      articles
+    } = this.state
     return (
       <ArticleWrapper>
-        {this.state.data
-          .slice(0, this.state.total)
-          .map(data => <ArticleCard {...data} key={data.id} />)
+        {articles
+          .map(articles => <ArticleCard {...articles} key={articles.id} />)
         }
-        {this.state.total < this.state.data.length &&
+        {articles.length < total &&
           <button onClick={this.showMore}>
               Show More
           </button>
