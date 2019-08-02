@@ -6,50 +6,44 @@ const NewPostForm = styled.form`
 `
 
 const NewPostInput = styled.input`
-width: calc(100% - 20px);
-  height: 50px;
   margin-bottom: 40px;
   padding-left: 20px;
+
+  width: calc(100% - 20px);
+  height: 50px;
+
   font-family: 'Montserrat';
   font-size: 16px;
+
   &:focus {
       outline: 0;
   }
 `
 
 const NewPostTextArea = styled.textarea`
+  margin-bottom: 40px;
+  padding: 20px;
+
   width: calc(100% - 40px);
   height: 80px;
-  margin-bottom: 40px;
+
   font-size: 16px;
   font-family: 'Montserrat';
   line-height: 2;
-  padding: 20px;
+
   &:focus {
       outline: 0;
   }
 `
 
-const NewPostButton = styled.button`
-  font-family: 'Montserrat';
-  border: 1px solid pink;
-  background-color: pink;
-  text-transform: uppercase;
-  padding: 20px 40px;
-  margin-bottom: 40px;
-  font-size: 20px;
-  transition: .5s all ease;
-  color: #fff;
-  box-shadow: 0px 0px 10px pink;
-  cursor: pointer;
-  &:hover {
-      /* background-color: #006bde;
-      border-color: #006bde;
-      color: #fff;
-      box-shadow: 0px 0px 10px #006bde; */
-  }
-  &:focus {
-      outline: 0;
+const NewPostButton = styled.div`
+  margin: 0 auto 40px;
+
+  width: 100%;
+  max-width: 300px;
+
+  button {
+    width: 100%;
   }
 `
 

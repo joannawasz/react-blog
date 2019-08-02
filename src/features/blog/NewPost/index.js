@@ -1,8 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { NewPostForm, NewPostInput, NewPostTextArea, NewPostButton, NewPostTitle } from './styles';
-import { PostBack } from '.././ArticleFull/styles'
+
 import pic from '../../../images/img-alps.jpg'
+
+import { Button2 } from '../../../constants/styles'
+
+import {
+  NewPostForm,
+  NewPostInput,
+  NewPostTextArea,
+  NewPostButton,
+  NewPostTitle
+} from './styles';
 
 class NewPost extends React.Component {
 
@@ -67,12 +75,9 @@ class NewPost extends React.Component {
           Text Area:
         </NewPostTitle>
         <NewPostTextArea value={body} onChange={this.onBodyAdd}></NewPostTextArea>
-        <NewPostButton>Add new post</NewPostButton>
-        {/* <PostBack>
-          <Link to={`../`}>
-            ← Back to main page
-          </Link>
-        </PostBack> */}
+        <NewPostButton>
+          <Button2>Add new post</Button2>
+        </NewPostButton>
       </NewPostForm>
     )
   }

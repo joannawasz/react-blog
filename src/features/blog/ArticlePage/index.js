@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
-import { fakeData, comments } from '../ArticleList/mocks'
+
 import ArticleFull from '../ArticleFull'
 import ArticleComment from '../ArticleComment'
-import { ArticlePageWrapper, ArticleButton, ArticleButtonWrapper, ArticleCommentsWrapper } from './styles'
 import CommentForm from '../CommentForm'
+
+import { fakeData, comments } from '../../../constants/mocks'
+import { Button1 } from '../../../constants/styles'
+
+import {
+  ArticlePageWrapper,
+  ArticleButtonWrapper,
+  ArticleCommentsWrapper } from './styles'
+
 
 const ArticlePage = ({ match }) => {
   const [ isShowing, setIsShowing ] = useState(false)
@@ -28,20 +36,20 @@ const ArticlePage = ({ match }) => {
   }
 
   return (
-    <ArticlePageWrapper>
+    <ArticlePageWrapper className="article-page-wrapper">
       <ArticleFull { ...article } />
       <CommentForm onSubmit={onAddComment} />
       <ArticleButtonWrapper>
-        <ArticleButton onClick={loadComments}>
+        <Button1 onClick={loadComments}>
           {isShowing ? 'hide comments' : 'show comments'}
-        </ArticleButton>
+        </Button1>
       </ArticleButtonWrapper>
       {isShowing &&
         <ArticleCommentsWrapper>
           {comment.map(data => <ArticleComment {...data} key={data.post_id} />)}
         </ArticleCommentsWrapper>
       }
-      </ArticlePageWrapper>
+    </ArticlePageWrapper>
   )
 }
 

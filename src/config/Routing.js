@@ -8,7 +8,7 @@ const Routing = () => (
     <BrowserRouter>
         <Route path='/' exact component={ArticleList}/>
         <Route path='/post/:id' component={ArticlePage} />
-        <Route path='/new-post' component={NewPost} />
+        <Route path='/new' component={NewPost} />
     </BrowserRouter>
 )
 

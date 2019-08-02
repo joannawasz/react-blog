@@ -1,5 +1,13 @@
 import React from 'react'
-import { CommentInput, CommentTextArea, CommentFormBox, CommentButton } from './styles'
+
+import { Button2 } from '../../../constants/styles'
+
+import {
+  CommentInput,
+  CommentTextArea,
+  CommentFormBox,
+  CommentButton
+} from './styles'
 
 class CommentForm extends React.Component {
 
@@ -38,7 +46,9 @@ class CommentForm extends React.Component {
       <CommentFormBox onSubmit={this.handleSubmit}>
         <CommentInput placeholder="Podaj swój email" value={post_author} onChange={this.onAuthorChange} />
         <CommentTextArea placeholder="Podaj treść komentarza" value={body} onChange={this.onBodyChange}></CommentTextArea>
-        <CommentButton>add comment</CommentButton>
+        <CommentButton>
+          <Button2>add comment</Button2>
+        </CommentButton>
       </CommentFormBox>
     )
   }

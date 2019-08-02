@@ -1,6 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Post, PostHeading, PostInfoWrapper, PostDate, PostAuthor, PostPic, PostBody, PostBack } from '../ArticleFull/styles'
+import {
+  Post,
+  PostHeading,
+  PostInfoWrapper,
+  PostDate,
+  PostAuthor,
+  PostPic,
+  PostBody,
+  PostBack } from '../ArticleFull/styles'
 
 class ArticleFull extends React.Component {
   render () {
