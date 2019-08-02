@@ -1,6 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ArticlePost, ArticleBody, ArticleHeading, ArticleInfo, ArticlePic, ArticleContentWrapper } from './styles'
+import {
+  ArticlePost,
+  ArticleBody,
+  ArticleHeading,
+  ArticleInfo,
+  ArticlePic,
+  ArticleContentWrapper } from './styles'
 
 class ArticleCard extends React.Component {
   render () {
@@ -8,7 +14,7 @@ class ArticleCard extends React.Component {
       pic,
       body
     } = this.props
-    const textBodySubstring = body.substring(0, 400)
+    const textBodySubstring = body.substring(0, 150)
 
     return (
       <ArticlePost>

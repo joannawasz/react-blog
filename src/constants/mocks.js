@@ -1,4 +1,4 @@
-import pic from '../../../images/img-1.jpg'
+import pic from '../images/img-alps.jpg'
 
 export const fakeData = [
     {
