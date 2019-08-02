@@ -44,8 +44,16 @@ class CommentForm extends React.Component {
     const { post_author, body } = this.state
     return (
       <CommentFormBox onSubmit={this.handleSubmit}>
-        <CommentInput placeholder="Podaj swój email" value={post_author} onChange={this.onAuthorChange} />
-        <CommentTextArea placeholder="Podaj treść komentarza" value={body} onChange={this.onBodyChange}></CommentTextArea>
+        <CommentInput
+          placeholder="Podaj swój email"
+          value={post_author}
+          onChange={this.onAuthorChange}
+        />
+        <CommentTextArea
+          placeholder="Podaj treść komentarza"
+          value={body}
+          onChange={this.onBodyChange}>
+          </CommentTextArea>
         <CommentButton>
           <Button2>add comment</Button2>
         </CommentButton>
