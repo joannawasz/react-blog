@@ -53,7 +53,7 @@ class CommentForm extends React.Component {
           placeholder="Podaj treść komentarza"
           value={body}
           onChange={this.onBodyChange}>
-          </CommentTextArea>
+        </CommentTextArea>
         <CommentButton>
           <Button2>add comment</Button2>
         </CommentButton>
