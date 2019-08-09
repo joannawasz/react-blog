@@ -1,10 +1,12 @@
 import React from 'react'
 import moment from 'moment'
+import axios from 'axios'
 
-import { fakeData } from '../../../constants/mocks'
 import { Button1 } from '../../../constants/styles'
 
 import { ArticleWrapper, ArticleListPage } from './styles'
+
+import { API_URL } from '../../../config'
 
 import NewPost from '../NewPost'
 import SideBar from '../SideBar'
@@ -24,7 +26,6 @@ class ArticleList extends React.Component {
     this.showMore = this.showMore.bind(this)
   }
 
-
   showSideBar = () => {
     this.setState({
       isShowing: !this.state.isShowing
@@ -36,25 +37,37 @@ class ArticleList extends React.Component {
     const newPostFull = {
       ...newPost,
       created_at: date,
-      id: (this.state.articles.length + 1).toString()
+      id: (this.state.articles.length + 1).toString(),
+      modified_at: '-'
     }
-    this.setState(state => ({
-      articles: [newPostFull, ...state.articles]
-    }))
-  }
-
-  showMore() {
-    this.setState(state => {
-      const { articles } = state
-      const fetchedArticles = fakeData.slice(articles.length, articles.length + 3)
-      return {
-        total: fakeData.length,
-        articles: [...articles, ...fetchedArticles]
-      }
+    axios.post(`${API_URL}posts`, newPostFull).then(({data}) => {
+      this.setState(state => ({
+        articles: [data, ...state.articles]
+      }))
     })
   }
 
-  componentWillMount() {
+  async showMore() {
+    this.setState({
+      loading: true
+    })
+    const { data } = await axios.get(`${API_URL}posts`)
+    console.log(data)
+    this.setState(state => {
+      const { articles } = state
+      const fetchedArticles = data.slice(articles.length, articles.length + 3)
+      return {
+        total: data.length,
+        articles: [...articles, ...fetchedArticles]
+      }
+    })
+      this.setState({
+        loading: false
+      })
+  }
+
+
+  componentDidMount() {
     this.showMore()
   }
 
@@ -86,39 +99,5 @@ class ArticleList extends React.Component {
     )
   }
 }
-// const ArticleList = () => {
-//   const [ articleList, setArticleList ] = useState(fakeData)
-//   const [ isShowing, setIsShowing ] = useState(false)
-
-//   const date = moment().format('YYYY-MM-DD')
-
-//   const showSideBar = () => {
-//     setIsShowing(value => !value)
-//   }
-
-//   const addNewPost = newPost => {
-//     setArticleList(articleList => [
-//       ...articleList,
-//       {
-//         ...newPost,
-//         id: (articleList.length + 1).toString(),
-//         created_at: date
-//       }
-//     ])
-//   }
-
-//   return (
-//     <ArticleListPage>
-//       {isShowing &&
-//         <SideBar onClick={showSideBar} />
-//       }
-//       <Button1 onClick={showSideBar}>hop siup</Button1>
-//       <NewPost onSubmit={addNewPost} />
-//       <ArticleWrapper>
-//         {articleList.map(data => <ArticleCard {...data} key={data.id} />)}
-//       </ArticleWrapper>
-//     </ArticleListPage>
-//   )
-// }
 
 export default ArticleList

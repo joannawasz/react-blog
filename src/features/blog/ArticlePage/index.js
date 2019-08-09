@@ -1,52 +1,89 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo, useEffect, useCallback } from 'react'
+import axios from 'axios'
 
 import ArticleFull from '../ArticleFull'
 import ArticleComment from '../ArticleComment'
 import CommentForm from '../CommentForm'
 
-import { fakeData, comments } from '../../../constants/mocks'
 import { Button1 } from '../../../constants/styles'
+
+import { API_URL } from '../../../config'
 
 import {
   ArticlePageWrapper,
   ArticleButtonWrapper,
   ArticleCommentsWrapper } from './styles'
 
+const ArticlePage = ({ match: { params: { id }}}) => {
+  const getComments = useMemo(() => {
+    return axios.get(`${API_URL}comments?postId=${id}`)
+  }, [id])
 
-const ArticlePage = ({ match }) => {
+  const getPost = useMemo(() => {
+    return axios.get(`${API_URL}posts/${id}`)
+  }, [id])
+
   const [ isShowing, setIsShowing ] = useState(false)
-  const [ commentList, setCommentList ] = useState(comments)
+  const [ commentList, setCommentList ] = useState([])
+  const [ post, setPost ] = useState([])
 
-  const comment = commentList.filter(doc => doc.id === match.params.id)
-  const article = fakeData.find(doc => doc.id === match.params.id)
+  const getArticleData = useCallback(async() => {
+    try {
+      const post = (await getPost).data
+      console.log(post)
+      setPost(post)
+    } catch (error) {
+      console.error(error)
+    }
+  }, [])
 
-  const loadComments = () => {
+  const loadComments = useCallback(async() => {
+    try {
+      const comments = (await getComments).data
+      console.log(comments)
+      setCommentList(comments)
+    } catch (error) {
+      console.error(error)
+    }
+  }, [])
+
+  useEffect(() => {
+    getArticleData()
+  }, [])
+
+  useEffect(() => {
+    if (!commentList.length) {
+      loadComments()
+    }
+  }, [isShowing])
+
+  const toggleComments = () => {
     setIsShowing(value => !value)
   }
 
   const onAddComment = comment => {
     setCommentList(commentList => [
-      ...commentList,
       {
         ...comment,
-        post_id: commentList.length + 1,
-        id: article.id
-      }
+        post_id: commentList.postId,
+        id: commentList.length + 1
+      },
+      ...commentList
     ])
   }
 
   return (
     <ArticlePageWrapper className="article-page-wrapper">
-      <ArticleFull { ...article } />
+      <ArticleFull { ...post } />
       <CommentForm onSubmit={onAddComment} />
       <ArticleButtonWrapper>
-        <Button1 onClick={loadComments}>
+        <Button1 onClick={toggleComments}>
           {isShowing ? 'hide comments' : 'show comments'}
         </Button1>
       </ArticleButtonWrapper>
       {isShowing &&
         <ArticleCommentsWrapper>
-          {comment.map(data => <ArticleComment {...data} key={data.post_id} />)}
+          {commentList.map(data => <ArticleComment {...data} key={data.id} />)}
         </ArticleCommentsWrapper>
       }
     </ArticlePageWrapper>
