@@ -1,9 +1,6 @@
 import React from 'react'
-
 import pic from '../../../images/img-alps.jpg'
-
 import { Button2 } from '../../../constants/styles'
-
 import {
   NewPostForm,
   NewPostInput,

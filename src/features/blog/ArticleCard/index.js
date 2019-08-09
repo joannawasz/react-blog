@@ -1,7 +1,5 @@
 import React from 'react'
-
 import pic from '../../../images/img-alps.jpg'
-
 import { Link } from 'react-router-dom'
 import {
   ArticlePost,

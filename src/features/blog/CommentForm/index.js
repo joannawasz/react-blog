@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { Button2 } from '../../../constants/styles'
-
 import {
   CommentInput,
   CommentTextArea,

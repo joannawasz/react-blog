@@ -1,14 +1,10 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import axios from 'axios'
-
 import ArticleFull from '../ArticleFull'
 import ArticleComment from '../ArticleComment'
 import CommentForm from '../CommentForm'
-
 import { Button1 } from '../../../constants/styles'
-
 import { API_URL } from '../../../config'
-
 import {
   ArticlePageWrapper,
   ArticleButtonWrapper,
