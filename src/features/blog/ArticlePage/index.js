@@ -30,7 +30,6 @@ const ArticlePage = ({ match: { params: { id }}}) => {
   const getArticleData = useCallback(async() => {
     try {
       const post = (await getPost).data
-      console.log(post)
       setPost(post)
     } catch (error) {
       console.error(error)
@@ -40,7 +39,6 @@ const ArticlePage = ({ match: { params: { id }}}) => {
   const loadComments = useCallback(async() => {
     try {
       const comments = (await getComments).data
-      console.log(comments)
       setCommentList(comments)
     } catch (error) {
       console.error(error)

@@ -52,7 +52,6 @@ class ArticleList extends React.Component {
       loading: true
     })
     const { data } = await axios.get(`${API_URL}posts`)
-    console.log(data)
     this.setState(state => {
       const { articles } = state
       const fetchedArticles = data.slice(articles.length, articles.length + 3)
@@ -61,9 +60,9 @@ class ArticleList extends React.Component {
         articles: [...articles, ...fetchedArticles]
       }
     })
-      this.setState({
-        loading: false
-      })
+    this.setState({
+      loading: false
+    })
   }
 
 
