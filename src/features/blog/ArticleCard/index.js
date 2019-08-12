@@ -23,7 +23,7 @@ class ArticleCard extends React.Component {
           <ArticleBody>
             {textBodySubstring}
             ...
-            <Link to={`post/${id}`}>Read more →</Link>
+            <Link to={`post/${id}`}>Read&nbsp;more&nbsp;→</Link>
           </ArticleBody>
         </ArticleContentWrapper>
       </ArticlePost>

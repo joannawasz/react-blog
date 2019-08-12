@@ -92,7 +92,7 @@ class ArticleList extends React.Component {
     return (
       <ArticleListPage>
         {isShowing && <SideBar />}
-        {loading && <p>loading paragraph</p>}
+        {loading && <p>loading paragraph - zrob jako spinner</p>}
         {loadNewPost && <ToastContainer />}
         <Button1 onClick={this.showSideBar}>hop siup</Button1>
         <NewPost onSubmit={this.addNewPost} />
