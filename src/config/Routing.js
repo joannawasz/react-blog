@@ -6,9 +6,9 @@ import NewPost from '../features/blog/NewPost'
 
 const Routing = () => (
   <BrowserRouter>
-    <Route path="/" exact component={ArticleList} />
-    <Route path="/post/:id" component={ArticlePage} />
-    <Route path="/new" component={NewPost} />
+    <Route path='/' exact component={ArticleList} />
+    <Route path='/post/:id' component={ArticlePage} />
+    <Route path='/new' component={NewPost} />
   </BrowserRouter>
 )
 

@@ -81,7 +81,7 @@ const ArticlePage = ({
   }
 
   return (
-    <ArticlePageWrapper className="article-page-wrapper">
+    <ArticlePageWrapper className='article-page-wrapper'>
       <ToastContainer />
       <ArticleFull {...post} />
       <CommentForm onSubmit={onAddComment} />

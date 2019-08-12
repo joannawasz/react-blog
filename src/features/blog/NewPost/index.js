@@ -56,11 +56,11 @@ class NewPost extends React.Component {
     return (
       <NewPostForm onSubmit={this.handleSubmit}>
         <NewPostTitle>Post Author:</NewPostTitle>
-        <NewPostInput value={userId} onChange={this.onAuthorAdd} />
+        <NewPostInput value={userId} onChange={this.onAuthorAdd} required />
         <NewPostTitle>Post Title:</NewPostTitle>
-        <NewPostInput value={title} onChange={this.onTitleAdd} />
+        <NewPostInput value={title} onChange={this.onTitleAdd} required />
         <NewPostTitle>Text Area:</NewPostTitle>
-        <NewPostTextArea value={body} onChange={this.onBodyAdd} />
+        <NewPostTextArea value={body} onChange={this.onBodyAdd} required />
         <NewPostButton>
           <Button2>Add new post</Button2>
         </NewPostButton>
