@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'proptypes';
-import pic from '../../../images/img-alps.jpg';
-import { Button2 } from '../../../constants/styles';
-import { NewPostForm, NewPostInput, NewPostTextArea, NewPostButton, NewPostTitle } from './styles';
+import React from 'react'
+import PropTypes from 'proptypes'
+import pic from '../../../images/img-alps.jpg'
+import { Button2 } from '../../../constants/styles'
+import { NewPostForm, NewPostInput, NewPostTextArea, NewPostButton, NewPostTitle } from './styles'
 
 class NewPost extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       id: '',
       title: '',
@@ -15,31 +15,31 @@ class NewPost extends React.Component {
       created_at: '',
       modified_at: '-',
       pic,
-    };
+    }
   }
 
   onAuthorAdd = author => {
     this.setState({
       userId: author.target.value,
-    });
-  };
+    })
+  }
 
   onTitleAdd = title => {
     this.setState({
       title: title.target.value,
-    });
-  };
+    })
+  }
 
   onBodyAdd = body => {
     this.setState({
       body: body.target.value,
-    });
-  };
+    })
+  }
 
   handleSubmit = e => {
-    const { onSubmit } = this.props;
-    e.preventDefault();
-    onSubmit(this.state);
+    const { onSubmit } = this.props
+    e.preventDefault()
+    onSubmit(this.state)
     this.setState({
       id: '',
       title: '',
@@ -48,11 +48,11 @@ class NewPost extends React.Component {
       created_at: '',
       modified_at: '',
       pic,
-    });
-  };
+    })
+  }
 
   render() {
-    const { userId, body, title } = this.state;
+    const { userId, body, title } = this.state
     return (
       <NewPostForm onSubmit={this.handleSubmit}>
         <NewPostTitle>Post Author:</NewPostTitle>
@@ -65,16 +65,16 @@ class NewPost extends React.Component {
           <Button2>Add new post</Button2>
         </NewPostButton>
       </NewPostForm>
-    );
+    )
   }
 }
 
 NewPost.propTypes = {
   onSubmit: PropTypes.func,
-};
+}
 
 NewPost.defaultProps = {
   onSubmit: () => {},
-};
+}
 
-export default NewPost;
+export default NewPost

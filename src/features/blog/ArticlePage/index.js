@@ -1,13 +1,13 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import axios from 'axios';
-import PropTypes from 'proptypes';
-import { ToastContainer, toast } from 'react-toastify';
-import ArticleFull from '../ArticleFull';
-import ArticleComment from '../ArticleComment';
-import CommentForm from '../CommentForm';
-import { Button1 } from '../../../constants/styles';
-import { API_URL } from '../../../config';
-import { ArticlePageWrapper, ArticleButtonWrapper, ArticleCommentsWrapper } from './styles';
+import React, { useState, useMemo, useEffect, useCallback } from 'react'
+import axios from 'axios'
+import PropTypes from 'proptypes'
+import { ToastContainer, toast } from 'react-toastify'
+import ArticleFull from '../ArticleFull'
+import ArticleComment from '../ArticleComment'
+import CommentForm from '../CommentForm'
+import { Button1 } from '../../../constants/styles'
+import { API_URL } from '../../../config'
+import { ArticlePageWrapper, ArticleButtonWrapper, ArticleCommentsWrapper } from './styles'
 
 const ArticlePage = ({
   match: {
@@ -15,16 +15,16 @@ const ArticlePage = ({
   },
 }) => {
   const getComments = useMemo(() => {
-    return axios.get(`${API_URL}comments?postId=${id}`);
-  }, [id]);
+    return axios.get(`${API_URL}comments?postId=${id}`)
+  }, [id])
 
   const getPost = useMemo(() => {
-    return axios.get(`${API_URL}posts/${id}`);
-  }, [id]);
+    return axios.get(`${API_URL}posts/${id}`)
+  }, [id])
 
-  const [isShowing, setIsShowing] = useState(false);
-  const [commentList, setCommentList] = useState([]);
-  const [post, setPost] = useState([]);
+  const [isShowing, setIsShowing] = useState(false)
+  const [commentList, setCommentList] = useState([])
+  const [post, setPost] = useState([])
 
   const errorMessage = () =>
     toast('Problem occurred, sorry!', {
@@ -34,40 +34,40 @@ const ArticlePage = ({
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-    });
+    })
 
   const getArticleData = useCallback(async () => {
     try {
-      const postData = (await getPost).data;
-      setPost(postData);
+      const postData = (await getPost).data
+      setPost(postData)
     } catch (error) {
-      errorMessage();
+      errorMessage()
     }
-  }, [getPost]);
+  }, [getPost])
 
   const loadComments = useCallback(async () => {
     try {
-      const comments = (await getComments).data;
-      setCommentList(comments);
+      const comments = (await getComments).data
+      setCommentList(comments)
     } catch (error) {
-      errorMessage();
+      errorMessage()
     }
-  }, [getComments]);
+  }, [getComments])
 
   useEffect(() => {
-    getArticleData();
-  }, [getArticleData]);
+    getArticleData()
+  }, [getArticleData])
 
   useEffect(() => {
     if (!commentList.length) {
-      loadComments();
+      loadComments()
     }
     // eslint-disable-next-line
-  }, [isShowing]);
+  }, [isShowing])
 
   const toggleComments = () => {
-    setIsShowing(value => !value);
-  };
+    setIsShowing(value => !value)
+  }
 
   const onAddComment = comment => {
     setCommentList(data => [
@@ -77,8 +77,8 @@ const ArticlePage = ({
         id: data.length + 1,
       },
       ...data,
-    ]);
-  };
+    ])
+  }
 
   return (
     <ArticlePageWrapper className="article-page-wrapper">
@@ -96,15 +96,15 @@ const ArticlePage = ({
         </ArticleCommentsWrapper>
       )}
     </ArticlePageWrapper>
-  );
-};
+  )
+}
 
 ArticlePage.propTypes = {
   id: PropTypes.number,
-};
+}
 
 ArticlePage.defaultProps = {
   id: 23456,
-};
+}
 
-export default ArticlePage;
+export default ArticlePage

@@ -1,4 +1,4 @@
-import pic from '../images/img-alps.jpg';
+import pic from '../images/img-alps.jpg'
 
 export const fakeData = [
   {
@@ -46,7 +46,7 @@ export const fakeData = [
     modified_at: '2015-07-28',
     pic,
   },
-];
+]
 
 export const comments = [
   {
@@ -85,4 +85,4 @@ export const comments = [
     post_author: 'Anonymous 1.1',
     body: 'Lorem ipsum dolor sit 1.1',
   },
-];
+]
