@@ -1,19 +1,31 @@
-import React from 'react'
-import { Comment, CommentAuthor, CommentBody } from './styles'
+/* eslint-disable react/prefer-stateless-function */
+import React from 'react';
+import PropTypes from 'proptypes';
+import { Comment, CommentAuthor, CommentBody } from './styles';
 
 class ArticleComment extends React.Component {
-  render () {
+  render() {
+    const { email, body } = this.props;
     return (
       <Comment>
         <CommentAuthor>
-          <span>Comment added by:</span> {this.props.email}
+          <span>Comment added by:</span>
+          {email}
         </CommentAuthor>
-        <CommentBody>
-          {this.props.body}
-        </CommentBody>
+        <CommentBody>{body}</CommentBody>
       </Comment>
-    )
+    );
   }
 }
 
-export default ArticleComment
+ArticleComment.propTypes = {
+  email: PropTypes.string,
+  body: PropTypes.string,
+};
+
+ArticleComment.defaultProps = {
+  email: 'default email',
+  body: 'default body',
+};
+
+export default ArticleComment;
