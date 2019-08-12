@@ -8,7 +8,6 @@ import NewPost from '../NewPost'
 import SideBar from '../SideBar'
 import ArticleCard from '../ArticleCard'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class ArticleList extends React.Component {
   constructor(props) {

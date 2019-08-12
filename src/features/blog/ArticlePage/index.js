@@ -3,6 +3,7 @@ import axios from 'axios'
 import ArticleFull from '../ArticleFull'
 import ArticleComment from '../ArticleComment'
 import CommentForm from '../CommentForm'
+import { ToastContainer, toast } from 'react-toastify';
 import { Button1 } from '../../../constants/styles'
 import { API_URL } from '../../../config'
 import {
@@ -23,12 +24,23 @@ const ArticlePage = ({ match: { params: { id }}}) => {
   const [ commentList, setCommentList ] = useState([])
   const [ post, setPost ] = useState([])
 
+  const errorMessage = () => toast (
+    'Problem occurred, sorry!',
+    {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true
+  })
+
   const getArticleData = useCallback(async() => {
     try {
       const post = (await getPost).data
       setPost(post)
     } catch (error) {
-      console.error(error)
+      errorMessage()
     }
   }, [])
 
@@ -37,7 +49,7 @@ const ArticlePage = ({ match: { params: { id }}}) => {
       const comments = (await getComments).data
       setCommentList(comments)
     } catch (error) {
-      console.error(error)
+      errorMessage()
     }
   }, [])
 
@@ -68,6 +80,7 @@ const ArticlePage = ({ match: { params: { id }}}) => {
 
   return (
     <ArticlePageWrapper className="article-page-wrapper">
+      <ToastContainer />
       <ArticleFull { ...post } />
       <CommentForm onSubmit={onAddComment} />
       <ArticleButtonWrapper>
