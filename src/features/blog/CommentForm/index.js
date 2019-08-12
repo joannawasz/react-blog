@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { Button2 } from '../../../constants/styles'
-
 import {
   CommentInput,
   CommentTextArea,
@@ -14,14 +12,14 @@ class CommentForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      post_author: '',
+      email: '',
       body: ''
     }
   }
 
   onAuthorChange = (author) => {
     this.setState({
-      post_author: author.target.value
+      email: author.target.value
     })
   }
 
@@ -35,18 +33,18 @@ class CommentForm extends React.Component {
     e.preventDefault();
     this.props.onSubmit(this.state)
     this.setState({
-      post_author: '',
+      email: '',
       body: ''
     })
   }
 
   render = () => {
-    const { post_author, body } = this.state
+    const { email, body } = this.state
     return (
       <CommentFormBox onSubmit={this.handleSubmit}>
         <CommentInput
           placeholder="Podaj swój email"
-          value={post_author}
+          value={email}
           onChange={this.onAuthorChange}
         />
         <CommentTextArea

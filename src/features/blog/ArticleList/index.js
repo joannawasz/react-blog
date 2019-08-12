@@ -1,14 +1,13 @@
 import React from 'react'
 import moment from 'moment'
-
-import { fakeData } from '../../../constants/mocks'
+import axios from 'axios'
 import { Button1 } from '../../../constants/styles'
-
 import { ArticleWrapper, ArticleListPage } from './styles'
-
+import { API_URL } from '../../../config'
 import NewPost from '../NewPost'
 import SideBar from '../SideBar'
 import ArticleCard from '../ArticleCard'
+import { ToastContainer, toast } from 'react-toastify';
 
 class ArticleList extends React.Component {
   constructor(props) {
@@ -16,6 +15,7 @@ class ArticleList extends React.Component {
 
     this.state = {
       loading: false,
+      loadNewPost: false,
       articles: [],
       total: 0,
       isShowing: false
@@ -24,6 +24,16 @@ class ArticleList extends React.Component {
     this.showMore = this.showMore.bind(this)
   }
 
+  errorMessage = () => toast(
+    'Problem occurred, sorry!',
+    {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true
+  })
 
   showSideBar = () => {
     this.setState({
@@ -31,30 +41,50 @@ class ArticleList extends React.Component {
     })
   }
 
-  addNewPost = newPost => {
-    const date = moment().format('YYYY-MM-DD')
-    const newPostFull = {
-      ...newPost,
-      created_at: date,
-      id: (this.state.articles.length + 1).toString()
-    }
-    this.setState(state => ({
-      articles: [newPostFull, ...state.articles]
-    }))
-  }
-
-  showMore() {
-    this.setState(state => {
-      const { articles } = state
-      const fetchedArticles = fakeData.slice(articles.length, articles.length + 3)
-      return {
-        total: fakeData.length,
-        articles: [...articles, ...fetchedArticles]
-      }
+  addNewPost = async(newPost) => {
+    this.setState({
+      loadNewPost: true
     })
+    try {
+      const date = moment().format('YYYY-MM-DD')
+      const newPostFull = {
+        ...newPost,
+        created_at: date,
+        id: (this.state.articles.length + 1).toString(),
+        modified_at: '-'
+      }
+      axios.post(`${API_URL}posts`, newPostFull).then(({data}) => {
+        this.setState(state => ({
+          articles: [data, ...state.articles],
+          loadNewPost: false
+        }))
+      })
+    } catch (error) {
+      this.errorMessage()
+    }
   }
 
-  componentWillMount() {
+  async showMore() {
+    this.setState({
+      loading: true
+    })
+    const { data } = await axios.get(`${API_URL}posts`)
+    try {
+      this.setState(state => {
+        const { articles } = state
+        const fetchedArticles = data.slice(articles.length, articles.length + 3)
+        return {
+          total: data.length,
+          loading: false,
+          articles: [...articles, ...fetchedArticles]
+        }
+      })
+    } catch (error) {
+      this.errorMessage()
+    }
+  }
+
+  componentDidMount() {
     this.showMore()
   }
 
@@ -63,12 +93,19 @@ class ArticleList extends React.Component {
       loading,
       total,
       articles,
-      isShowing
+      isShowing,
+      loadNewPost
     } = this.state
     return (
       <ArticleListPage>
         {isShowing &&
           <SideBar />
+        }
+        {loading &&
+          <p>loading paragraph</p>
+        }
+        {loadNewPost &&
+          <ToastContainer />
         }
         <Button1 onClick={this.showSideBar}>hop siup</Button1>
         <NewPost onSubmit={this.addNewPost} />
@@ -86,39 +123,5 @@ class ArticleList extends React.Component {
     )
   }
 }
-// const ArticleList = () => {
-//   const [ articleList, setArticleList ] = useState(fakeData)
-//   const [ isShowing, setIsShowing ] = useState(false)
-
-//   const date = moment().format('YYYY-MM-DD')
-
-//   const showSideBar = () => {
-//     setIsShowing(value => !value)
-//   }
-
-//   const addNewPost = newPost => {
-//     setArticleList(articleList => [
-//       ...articleList,
-//       {
-//         ...newPost,
-//         id: (articleList.length + 1).toString(),
-//         created_at: date
-//       }
-//     ])
-//   }
-
-//   return (
-//     <ArticleListPage>
-//       {isShowing &&
-//         <SideBar onClick={showSideBar} />
-//       }
-//       <Button1 onClick={showSideBar}>hop siup</Button1>
-//       <NewPost onSubmit={addNewPost} />
-//       <ArticleWrapper>
-//         {articleList.map(data => <ArticleCard {...data} key={data.id} />)}
-//       </ArticleWrapper>
-//     </ArticleListPage>
-//   )
-// }
 
 export default ArticleList

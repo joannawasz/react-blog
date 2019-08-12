@@ -1,17 +1,16 @@
 import React from 'react'
+import pic from '../../../images/img-alps.jpg'
 import { Link } from 'react-router-dom'
 import {
   ArticlePost,
   ArticleBody,
   ArticleHeading,
-  ArticleInfo,
   ArticlePic,
   ArticleContentWrapper } from './styles'
 
 class ArticleCard extends React.Component {
   render () {
     const {
-      pic,
       body
     } = this.props
     const textBodySubstring = body.substring(0, 150)
@@ -23,11 +22,6 @@ class ArticleCard extends React.Component {
           <ArticleHeading>
             {this.props.title}
           </ArticleHeading>
-          <ArticleInfo>
-            <p>Author: <span>{this.props.author_id}</span></p>
-            <p>Created: <span>{this.props.created_at}</span></p>
-            <p>Modified: <span>{this.props.modified_at}</span></p>
-          </ArticleInfo>
           <ArticleBody>
             {textBodySubstring}...
             <Link to={`post/${this.props.id}`}>

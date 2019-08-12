@@ -1,9 +1,6 @@
 import React from 'react'
-
 import pic from '../../../images/img-alps.jpg'
-
 import { Button2 } from '../../../constants/styles'
-
 import {
   NewPostForm,
   NewPostInput,
@@ -20,7 +17,7 @@ class NewPost extends React.Component {
       id: '',
       title: '',
       body: '',
-      author_id: '',
+      userId: '',
       created_at: '',
       modified_at: '-',
       pic: pic
@@ -29,7 +26,7 @@ class NewPost extends React.Component {
 
   onAuthorAdd = author => {
     this.setState({
-      author_id: author.target.value
+      userId: author.target.value
     })
   }
 
@@ -52,7 +49,7 @@ class NewPost extends React.Component {
       id: '',
       title: '',
       body: '',
-      author_id: '',
+      userId: '',
       created_at: '',
       modified_at: '',
       pic: pic
@@ -60,13 +57,13 @@ class NewPost extends React.Component {
   }
 
   render(){
-    const { author_id, body, title } = this.state
+    const { userId, body, title } = this.state
     return (
       <NewPostForm onSubmit={this.handleSubmit}>
         <NewPostTitle>
           Post Author:
         </NewPostTitle>
-        <NewPostInput value={author_id} onChange={this.onAuthorAdd} />
+        <NewPostInput value={userId} onChange={this.onAuthorAdd} />
         <NewPostTitle>
           Post Title:
         </NewPostTitle>

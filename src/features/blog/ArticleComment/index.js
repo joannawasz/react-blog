@@ -6,7 +6,7 @@ class ArticleComment extends React.Component {
     return (
       <Comment>
         <CommentAuthor>
-          <span>Comment added by:</span> {this.props.post_author}
+          <span>Comment added by:</span> {this.props.email}
         </CommentAuthor>
         <CommentBody>
           {this.props.body}
