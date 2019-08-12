@@ -34,9 +34,4 @@ const AddNewPostWrapper = styled.div`
   margin-top: 40px;
 `
 
-export {
-  ArticleWrapper,
-  AddNewPost,
-  ArticleListPage,
-  AddNewPostWrapper
-}
+export { ArticleWrapper, AddNewPost, ArticleListPage, AddNewPostWrapper }

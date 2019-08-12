@@ -68,13 +68,4 @@ const PostBody = styled.p`
   text-align: justify;
 `
 
-export {
-  Post,
-  PostHeading,
-  PostInfoWrapper,
-  PostDate,
-  PostAuthor,
-  PostPic,
-  PostBody,
-  PostBack
-}
+export { Post, PostHeading, PostInfoWrapper, PostDate, PostAuthor, PostPic, PostBody, PostBack }
