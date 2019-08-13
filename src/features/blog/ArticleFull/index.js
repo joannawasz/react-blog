@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'proptypes'
 import pic from '../../../images/img-alps.jpg'
-// eslint-disable-next-line
 import {
   Post,
   PostHeading,
@@ -17,6 +16,7 @@ import {
 class ArticleFull extends React.Component {
   render() {
     const { title, body } = this.props
+
     return (
       <Post>
         <PostBack>
@@ -35,13 +35,8 @@ class ArticleFull extends React.Component {
 }
 
 ArticleFull.propTypes = {
-  title: PropTypes.string,
-  body: PropTypes.string,
-}
-
-ArticleFull.defaultProps = {
-  title: 'default title',
-  body: 'default body',
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
 }
 
 export default ArticleFull

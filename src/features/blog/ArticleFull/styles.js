@@ -16,7 +16,6 @@ const PostHeaderWrapper = styled.div`
 const PostPic = styled.img`
   right: 0;
   width: 60%;
-
   background-size: cover;
 `
 
@@ -75,7 +74,7 @@ const PostBody = styled.p`
   line-height: 2em;
   text-align: justify;
 `
-// eslint-disable-next-line
+
 export {
   Post,
   PostHeading,

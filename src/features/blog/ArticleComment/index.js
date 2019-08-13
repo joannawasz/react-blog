@@ -6,6 +6,7 @@ import { Comment, CommentAuthor, CommentBody } from './styles'
 class ArticleComment extends React.Component {
   render() {
     const { email, body } = this.props
+
     return (
       <Comment>
         <CommentAuthor>
@@ -19,13 +20,8 @@ class ArticleComment extends React.Component {
 }
 
 ArticleComment.propTypes = {
-  email: PropTypes.string,
-  body: PropTypes.string,
-}
-
-ArticleComment.defaultProps = {
-  email: 'default email',
-  body: 'default body',
+  email: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
 }
 
 export default ArticleComment

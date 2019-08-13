@@ -15,6 +15,7 @@ class ArticleCard extends React.Component {
   render() {
     const { body, title, id } = this.props
     const textBodySubstring = body.substring(0, 150)
+
     return (
       <ArticlePost>
         <ArticlePic src={pic} />
@@ -32,15 +33,13 @@ class ArticleCard extends React.Component {
 }
 
 ArticleCard.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   body: PropTypes.string,
-  id: PropTypes.number,
+  id: PropTypes.number.isRequired,
 }
 
 ArticleCard.defaultProps = {
-  title: 'default title',
   body: 'default body',
-  id: 45678,
 }
 
 export default ArticleCard
