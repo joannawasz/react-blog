@@ -97,6 +97,11 @@ const ArticlePage = ({
 
 ArticlePage.propTypes = {
   id: PropTypes.number,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
 }
 
 ArticlePage.defaultProps = {
