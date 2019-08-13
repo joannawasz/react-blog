@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 export const breakpoints = {
   sm: 576,
   md: 768,
