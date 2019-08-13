@@ -1,10 +1,10 @@
 import React from 'react'
 import moment from 'moment'
 import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import { Button1 } from '../../../constants/styles'
 import { ArticleWrapper, ArticleListPage } from './styles'
-import { API_URL } from '../../../config'
+import { API_URL, errorMessage } from '../../../config'
 import NewPost from '../NewPost'
 import SideBar from '../SideBar'
 import ArticleCard from '../ArticleCard'
@@ -33,16 +33,6 @@ class ArticleList extends React.Component {
     })
   }
 
-  errorMessage = () =>
-    toast('Problem occurred, sorry!', {
-      position: 'top-left',
-      autoClose: 5000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    })
-
   addNewPost = async newPost => {
     const { articles } = this.state
     this.setState({
@@ -63,7 +53,7 @@ class ArticleList extends React.Component {
         }))
       })
     } catch (error) {
-      this.errorMessage()
+      errorMessage()
     }
   }
 
