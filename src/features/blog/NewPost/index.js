@@ -2,7 +2,13 @@ import React from 'react'
 import PropTypes from 'proptypes'
 import pic from '../../../images/img-alps.jpg'
 import { Button2 } from '../../../constants/styles'
-import { NewPostForm, NewPostInput, NewPostTextArea, NewPostButton, NewPostTitle } from './styles'
+import {
+  NewPostForm,
+  NewPostInput,
+  NewPostTextArea,
+  NewPostButton,
+  NewPostTitle,
+} from './styles'
 
 class NewPost extends React.Component {
   constructor(props) {

@@ -53,4 +53,10 @@ const NewPostTitle = styled.h2`
   text-align: left;
 `
 
-export { NewPostForm, NewPostInput, NewPostTextArea, NewPostButton, NewPostTitle }
+export {
+  NewPostForm,
+  NewPostInput,
+  NewPostTextArea,
+  NewPostButton,
+  NewPostTitle,
+}

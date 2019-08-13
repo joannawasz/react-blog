@@ -1,7 +1,12 @@
 import React from 'react'
 import PropTypes from 'proptypes'
 import { Button2 } from '../../../constants/styles'
-import { CommentInput, CommentTextArea, CommentFormBox, CommentButton } from './styles'
+import {
+  CommentInput,
+  CommentTextArea,
+  CommentFormBox,
+  CommentButton,
+} from './styles'
 
 class CommentForm extends React.Component {
   constructor(props) {

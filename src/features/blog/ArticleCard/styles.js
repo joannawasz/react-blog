@@ -70,4 +70,11 @@ const ArticleContentWrapper = styled.div`
   padding: 0 20px;
 `
 
-export { ArticlePost, ArticleBody, ArticleHeading, ArticleInfo, ArticlePic, ArticleContentWrapper }
+export {
+  ArticlePost,
+  ArticleBody,
+  ArticleHeading,
+  ArticleInfo,
+  ArticlePic,
+  ArticleContentWrapper,
+}

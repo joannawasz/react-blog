@@ -101,7 +101,9 @@ class ArticleList extends React.Component {
             <ArticleCard {...data} key={data.id} />
           ))}
         </ArticleWrapper>
-        {articles.length < total && <Button1 onClick={this.showMore}>Show More</Button1>}
+        {articles.length < total && (
+          <Button1 onClick={this.showMore}>Show More</Button1>
+        )}
       </ArticleListPage>
     )
   }

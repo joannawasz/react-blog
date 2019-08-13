@@ -7,7 +7,11 @@ import ArticleComment from '../ArticleComment'
 import CommentForm from '../CommentForm'
 import { Button1 } from '../../../constants/styles'
 import { API_URL } from '../../../config'
-import { ArticlePageWrapper, ArticleButtonWrapper, ArticleCommentsWrapper } from './styles'
+import {
+  ArticlePageWrapper,
+  ArticleButtonWrapper,
+  ArticleCommentsWrapper,
+} from './styles'
 
 const ArticlePage = ({
   match: {
@@ -86,7 +90,9 @@ const ArticlePage = ({
       <ArticleFull {...post} />
       <CommentForm onSubmit={onAddComment} />
       <ArticleButtonWrapper>
-        <Button1 onClick={toggleComments}>{isShowing ? 'hide comments' : 'show comments'}</Button1>
+        <Button1 onClick={toggleComments}>
+          {isShowing ? 'hide comments' : 'show comments'}
+        </Button1>
       </ArticleButtonWrapper>
       {isShowing && (
         <ArticleCommentsWrapper>

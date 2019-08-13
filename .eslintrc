@@ -20,6 +20,7 @@
     "react/jsx-props-no-spreading": [{
       "html": "ignore",
       "custom": "ignore"
-    }]
+    }],
+    "import/prefer-default-export": "off"
   }
 }
