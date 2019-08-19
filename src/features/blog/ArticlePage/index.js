@@ -1,12 +1,12 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import PropTypes from 'proptypes'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import ArticleFull from '../ArticleFull'
 import ArticleComment from '../ArticleComment'
 import CommentForm from '../CommentForm'
 import { Button1 } from '../../../constants/styles'
-import { API_URL, errorMessage } from '../../../config'
+import { API_URL } from '../../../config'
 import {
   ArticlePageWrapper,
   ArticleButtonWrapper,
@@ -26,6 +26,15 @@ const ArticlePage = ({
     return axios.get(`${API_URL}posts/${id}`)
   }, [id])
 
+  toast.configure({
+    position: toast.POSITION.TOP_LEFT,
+    autoClose: 5000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+  })
+
   const [isShowing, setIsShowing] = useState(false)
   const [commentList, setCommentList] = useState([])
   const [post, setPost] = useState(null)
@@ -35,7 +44,7 @@ const ArticlePage = ({
       const postData = (await getPost).data
       setPost(postData)
     } catch (error) {
-      errorMessage()
+      toast.error('Problem occured, sorry!')
     }
   }, [getPost])
 
@@ -44,7 +53,7 @@ const ArticlePage = ({
       const comments = (await getComments).data
       setCommentList(comments)
     } catch (error) {
-      errorMessage()
+      toast.error('Problem occured, sorry!')
     }
   }, [getComments])
 
