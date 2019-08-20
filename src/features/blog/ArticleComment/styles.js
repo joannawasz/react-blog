@@ -8,6 +8,7 @@ const Comment = styled.div`
 
 const CommentAuthor = styled.p`
   span {
+    margin-right: 6px;
     font-size: 12px;
   }
 `
@@ -17,8 +18,4 @@ const CommentBody = styled.p`
   font-size: 20px;
 `
 
-export {
-  Comment,
-  CommentAuthor,
-  CommentBody
-}
+export { Comment, CommentAuthor, CommentBody }

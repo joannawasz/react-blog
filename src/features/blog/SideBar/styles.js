@@ -8,17 +8,14 @@ const SideBarWrapper = styled.div`
   right: 0;
 
   background: #fff;
-  box-shadow: -1px 0px 3px 0px rgba(0,0,0,0.4);
+  box-shadow: -1px 0px 3px 0px rgba(0, 0, 0, 0.4);
 
   width: 300px;
 
   z-index: 1;
-  transition: .5s all ease;
+  transition: 0.5s all ease;
 `
 
 const SideBarClose = styled.div``
 
-export {
-  SideBarWrapper,
-  SideBarClose
-}
+export { SideBarWrapper, SideBarClose }

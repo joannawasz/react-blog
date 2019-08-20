@@ -1,62 +1,65 @@
 import React from 'react'
 import moment from 'moment'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
 import { Button1 } from '../../../constants/styles'
 import { ArticleWrapper, ArticleListPage } from './styles'
 import { API_URL } from '../../../config'
 import NewPost from '../NewPost'
 import SideBar from '../SideBar'
 import ArticleCard from '../ArticleCard'
-import { ToastContainer, toast } from 'react-toastify';
 
 class ArticleList extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = {
       loading: false,
       loadNewPost: false,
       articles: [],
       total: 0,
-      isShowing: false
+      isShowing: false,
     }
-
     this.showMore = this.showMore.bind(this)
   }
 
-  errorMessage = () => toast(
-    'Problem occurred, sorry!',
-    {
-      position: "top-left",
+  componentDidMount() {
+    this.showMore()
+  }
+
+  errorMessage = () =>
+    toast('Problem occurred, sorry!', {
+      position: toast.POSITION.TOP_LEFT,
       autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
-      draggable: true
-  })
+      draggable: true,
+    })
 
   showSideBar = () => {
+    const { isShowing } = this.state
     this.setState({
-      isShowing: !this.state.isShowing
+      isShowing: !isShowing,
     })
   }
 
-  addNewPost = async(newPost) => {
+  addNewPost = async newPost => {
+    const { articles } = this.state
     this.setState({
-      loadNewPost: true
+      loadNewPost: true,
     })
     try {
       const date = moment().format('YYYY-MM-DD')
       const newPostFull = {
         ...newPost,
         created_at: date,
-        id: (this.state.articles.length + 1).toString(),
-        modified_at: '-'
+        id: (articles.length + 1).toString(),
+        modified_at: '-',
       }
-      axios.post(`${API_URL}posts`, newPostFull).then(({data}) => {
+      axios.post(`${API_URL}posts`, newPostFull).then(({ data }) => {
         this.setState(state => ({
           articles: [data, ...state.articles],
-          loadNewPost: false
+          loadNewPost: false,
         }))
       })
     } catch (error) {
@@ -66,7 +69,7 @@ class ArticleList extends React.Component {
 
   async showMore() {
     this.setState({
-      loading: true
+      loading: true,
     })
     const { data } = await axios.get(`${API_URL}posts`)
     try {
@@ -76,7 +79,7 @@ class ArticleList extends React.Component {
         return {
           total: data.length,
           loading: false,
-          articles: [...articles, ...fetchedArticles]
+          articles: [...articles, ...fetchedArticles],
         }
       })
     } catch (error) {
@@ -84,41 +87,23 @@ class ArticleList extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.showMore()
-  }
-
   render() {
-    const {
-      loading,
-      total,
-      articles,
-      isShowing,
-      loadNewPost
-    } = this.state
+    const { loading, total, articles, isShowing, loadNewPost } = this.state
     return (
       <ArticleListPage>
-        {isShowing &&
-          <SideBar />
-        }
-        {loading &&
-          <p>loading paragraph</p>
-        }
-        {loadNewPost &&
-          <ToastContainer />
-        }
+        {isShowing && <SideBar />}
+        {loading && <p>loading paragraph - zrob jako spinner</p>}
+        {loadNewPost && <ToastContainer />}
         <Button1 onClick={this.showSideBar}>hop siup</Button1>
         <NewPost onSubmit={this.addNewPost} />
         <ArticleWrapper>
-          {articles
-            .map(articles => <ArticleCard {...articles} key={articles.id} />)
-          }
+          {articles.map(data => (
+            <ArticleCard {...data} key={data.id} />
+          ))}
         </ArticleWrapper>
-        {articles.length < total &&
-          <Button1 onClick={this.showMore}>
-              Show More
-          </Button1>
-        }
+        {articles.length < total && (
+          <Button1 onClick={this.showMore}>Show More</Button1>
+        )}
       </ArticleListPage>
     )
   }

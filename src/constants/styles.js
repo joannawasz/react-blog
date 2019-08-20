@@ -39,11 +39,11 @@ const Button2 = styled.button`
   box-shadow: 0px 0px 10px pink;
   opacity: 0.8;
 
-  transition: .5s all ease;
+  transition: 0.5s all ease;
   cursor: pointer;
 
   &:focus {
-    transform: scale(.95);
+    transform: scale(0.95);
     outline: 0;
 
     color: white;
@@ -54,7 +54,4 @@ const Button2 = styled.button`
   }
 `
 
-export {
-  Button1,
-  Button2
-}
+export { Button1, Button2 }

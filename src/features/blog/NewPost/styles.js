@@ -16,7 +16,7 @@ const NewPostInput = styled.input`
   font-size: 16px;
 
   &:focus {
-      outline: 0;
+    outline: 0;
   }
 `
 
@@ -32,7 +32,7 @@ const NewPostTextArea = styled.textarea`
   line-height: 2;
 
   &:focus {
-      outline: 0;
+    outline: 0;
   }
 `
 
@@ -58,5 +58,5 @@ export {
   NewPostInput,
   NewPostTextArea,
   NewPostButton,
-  NewPostTitle
+  NewPostTitle,
 }

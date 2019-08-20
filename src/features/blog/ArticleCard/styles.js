@@ -76,5 +76,5 @@ export {
   ArticleHeading,
   ArticleInfo,
   ArticlePic,
-  ArticleContentWrapper
+  ArticleContentWrapper,
 }

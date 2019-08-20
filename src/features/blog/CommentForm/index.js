@@ -1,40 +1,41 @@
 import React from 'react'
+import PropTypes from 'proptypes'
 import { Button2 } from '../../../constants/styles'
 import {
   CommentInput,
   CommentTextArea,
   CommentFormBox,
-  CommentButton
+  CommentButton,
 } from './styles'
 
 class CommentForm extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
       email: '',
-      body: ''
+      body: '',
     }
   }
 
-  onAuthorChange = (author) => {
+  onAuthorChange = author => {
     this.setState({
-      email: author.target.value
+      email: author.target.value,
     })
   }
 
-  onBodyChange = (text) => {
+  onBodyChange = text => {
     this.setState({
-      body: text.target.value
+      body: text.target.value,
     })
   }
 
   handleSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit(this.state)
+    const { onSubmit } = this.props
+    e.preventDefault()
+    onSubmit(this.state)
     this.setState({
       email: '',
-      body: ''
+      body: '',
     })
   }
 
@@ -43,21 +44,31 @@ class CommentForm extends React.Component {
     return (
       <CommentFormBox onSubmit={this.handleSubmit}>
         <CommentInput
-          placeholder="Podaj swój email"
+          placeholder='Podaj swój email'
           value={email}
           onChange={this.onAuthorChange}
+          required
         />
         <CommentTextArea
-          placeholder="Podaj treść komentarza"
+          placeholder='Podaj treść komentarza'
           value={body}
-          onChange={this.onBodyChange}>
-        </CommentTextArea>
+          onChange={this.onBodyChange}
+          required
+        />
         <CommentButton>
           <Button2>add comment</Button2>
         </CommentButton>
       </CommentFormBox>
     )
   }
+}
+
+CommentForm.propTypes = {
+  onSubmit: PropTypes.func,
+}
+
+CommentForm.defaultProps = {
+  onSubmit: () => {},
 }
 
 export default CommentForm

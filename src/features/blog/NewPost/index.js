@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'proptypes'
 import pic from '../../../images/img-alps.jpg'
 import { Button2 } from '../../../constants/styles'
 import {
@@ -6,11 +7,10 @@ import {
   NewPostInput,
   NewPostTextArea,
   NewPostButton,
-  NewPostTitle
-} from './styles';
+  NewPostTitle,
+} from './styles'
 
 class NewPost extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -20,31 +20,32 @@ class NewPost extends React.Component {
       userId: '',
       created_at: '',
       modified_at: '-',
-      pic: pic
+      pic,
     }
   }
 
   onAuthorAdd = author => {
     this.setState({
-      userId: author.target.value
+      userId: author.target.value,
     })
   }
 
   onTitleAdd = title => {
     this.setState({
-      title: title.target.value
+      title: title.target.value,
     })
   }
 
   onBodyAdd = body => {
     this.setState({
-      body: body.target.value
+      body: body.target.value,
     })
   }
 
   handleSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit(this.state)
+    const { onSubmit } = this.props
+    e.preventDefault()
+    onSubmit(this.state)
     this.setState({
       id: '',
       title: '',
@@ -52,32 +53,34 @@ class NewPost extends React.Component {
       userId: '',
       created_at: '',
       modified_at: '',
-      pic: pic
+      pic,
     })
   }
 
-  render(){
+  render() {
     const { userId, body, title } = this.state
     return (
       <NewPostForm onSubmit={this.handleSubmit}>
-        <NewPostTitle>
-          Post Author:
-        </NewPostTitle>
-        <NewPostInput value={userId} onChange={this.onAuthorAdd} />
-        <NewPostTitle>
-          Post Title:
-        </NewPostTitle>
-        <NewPostInput value={title} onChange={this.onTitleAdd} />
-        <NewPostTitle>
-          Text Area:
-        </NewPostTitle>
-        <NewPostTextArea value={body} onChange={this.onBodyAdd}></NewPostTextArea>
+        <NewPostTitle>Post Author:</NewPostTitle>
+        <NewPostInput value={userId} onChange={this.onAuthorAdd} required />
+        <NewPostTitle>Post Title:</NewPostTitle>
+        <NewPostInput value={title} onChange={this.onTitleAdd} required />
+        <NewPostTitle>Text Area:</NewPostTitle>
+        <NewPostTextArea value={body} onChange={this.onBodyAdd} required />
         <NewPostButton>
           <Button2>Add new post</Button2>
         </NewPostButton>
       </NewPostForm>
     )
   }
+}
+
+NewPost.propTypes = {
+  onSubmit: PropTypes.func,
+}
+
+NewPost.defaultProps = {
+  onSubmit: () => {},
 }
 
 export default NewPost

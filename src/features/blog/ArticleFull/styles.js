@@ -3,27 +3,34 @@ import styled from 'styled-components'
 const Post = styled.div`
   position: relative;
 
-  padding: 150px 0 50px;
+  padding: 100px 0 60px;
+`
+
+const PostHeaderWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  position: relative;
 `
 
 const PostPic = styled.img`
-  position: absolute;
-
   right: 0;
   width: 60%;
-
   background-size: cover;
 `
 
 const PostInfoWrapper = styled.div`
-  position: relative;
+  position: absolute;
 
-  margin-top: 15%;
-  padding: 60px 0;
+  left: 0;
+  bottom: -10%;
 
-  width: 50%;
+  width: 100%;
+  max-width: 700px;
+
+  padding: 5% 0;
+
   background: white;
-  z-index: 10;
 `
 
 const PostHeading = styled.h2`
@@ -62,7 +69,7 @@ const PostBack = styled.div`
 `
 
 const PostBody = styled.p`
-  margin-top: 40px;
+  margin-top: 100px;
   font-size: 20px;
   line-height: 2em;
   text-align: justify;
@@ -74,7 +81,8 @@ export {
   PostInfoWrapper,
   PostDate,
   PostAuthor,
+  PostHeaderWrapper,
   PostPic,
   PostBody,
-  PostBack
+  PostBack,
 }

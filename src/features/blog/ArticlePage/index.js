@@ -1,17 +1,23 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import axios from 'axios'
+import PropTypes from 'proptypes'
+import { ToastContainer, toast } from 'react-toastify'
 import ArticleFull from '../ArticleFull'
 import ArticleComment from '../ArticleComment'
 import CommentForm from '../CommentForm'
-import { ToastContainer, toast } from 'react-toastify';
 import { Button1 } from '../../../constants/styles'
 import { API_URL } from '../../../config'
 import {
   ArticlePageWrapper,
   ArticleButtonWrapper,
-  ArticleCommentsWrapper } from './styles'
+  ArticleCommentsWrapper,
+} from './styles'
 
-const ArticlePage = ({ match: { params: { id }}}) => {
+const ArticlePage = ({
+  match: {
+    params: { id },
+  },
+}) => {
   const getComments = useMemo(() => {
     return axios.get(`${API_URL}comments?postId=${id}`)
   }, [id])
@@ -20,47 +26,46 @@ const ArticlePage = ({ match: { params: { id }}}) => {
     return axios.get(`${API_URL}posts/${id}`)
   }, [id])
 
-  const [ isShowing, setIsShowing ] = useState(false)
-  const [ commentList, setCommentList ] = useState([])
-  const [ post, setPost ] = useState([])
-
-  const errorMessage = () => toast (
-    'Problem occurred, sorry!',
-    {
-      position: "top-left",
-      autoClose: 5000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true
+  toast.configure({
+    position: toast.POSITION.TOP_LEFT,
+    autoClose: 5000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
   })
 
-  const getArticleData = useCallback(async() => {
-    try {
-      const post = (await getPost).data
-      setPost(post)
-    } catch (error) {
-      errorMessage()
-    }
-  }, [])
+  const [isShowing, setIsShowing] = useState(false)
+  const [commentList, setCommentList] = useState([])
+  const [post, setPost] = useState(null)
 
-  const loadComments = useCallback(async() => {
+  const getArticleData = useCallback(async () => {
+    try {
+      const postData = (await getPost).data
+      setPost(postData)
+    } catch (error) {
+      toast.error('Problem occured, sorry!')
+    }
+  }, [getPost])
+
+  const loadComments = useCallback(async () => {
     try {
       const comments = (await getComments).data
       setCommentList(comments)
     } catch (error) {
-      errorMessage()
+      toast.error('Problem occured, sorry!')
     }
-  }, [])
+  }, [getComments])
 
   useEffect(() => {
     getArticleData()
-  }, [])
+  }, [getArticleData])
 
   useEffect(() => {
     if (!commentList.length) {
       loadComments()
     }
+    // eslint-disable-next-line
   }, [isShowing])
 
   const toggleComments = () => {
@@ -68,33 +73,48 @@ const ArticlePage = ({ match: { params: { id }}}) => {
   }
 
   const onAddComment = comment => {
-    setCommentList(commentList => [
+    setCommentList(data => [
       {
         ...comment,
-        post_id: commentList.postId,
-        id: commentList.length + 1
+        post_id: data.postId,
+        id: data.length + 1,
       },
-      ...commentList
+      ...data,
     ])
   }
 
   return (
-    <ArticlePageWrapper className="article-page-wrapper">
+    <ArticlePageWrapper className='article-page-wrapper'>
       <ToastContainer />
-      <ArticleFull { ...post } />
+      {post && <ArticleFull {...post} />}
       <CommentForm onSubmit={onAddComment} />
       <ArticleButtonWrapper>
         <Button1 onClick={toggleComments}>
           {isShowing ? 'hide comments' : 'show comments'}
         </Button1>
       </ArticleButtonWrapper>
-      {isShowing &&
+      {isShowing && (
         <ArticleCommentsWrapper>
-          {commentList.map(data => <ArticleComment {...data} key={data.id} />)}
+          {commentList.map(data => (
+            <ArticleComment {...data} key={data.id} />
+          ))}
         </ArticleCommentsWrapper>
-      }
+      )}
     </ArticlePageWrapper>
   )
+}
+
+ArticlePage.propTypes = {
+  id: PropTypes.number,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+}
+
+ArticlePage.defaultProps = {
+  id: 23456,
 }
 
 export default ArticlePage

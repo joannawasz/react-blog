@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const CommentFormBox = styled.form `
+const CommentFormBox = styled.form`
   display: flex;
 
   justify-content: space-between;
@@ -56,9 +56,4 @@ const CommentButton = styled.div`
   }
 `
 
-export {
-  CommentFormBox,
-  CommentInput,
-  CommentTextArea,
-  CommentButton
-}
+export { CommentFormBox, CommentInput, CommentTextArea, CommentButton }

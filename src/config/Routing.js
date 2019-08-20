@@ -5,11 +5,11 @@ import ArticlePage from '../features/blog/ArticlePage'
 import NewPost from '../features/blog/NewPost'
 
 const Routing = () => (
-    <BrowserRouter>
-        <Route path='/' exact component={ArticleList}/>
-        <Route path='/post/:id' component={ArticlePage} />
-        <Route path='/new' component={NewPost} />
-    </BrowserRouter>
+  <BrowserRouter>
+    <Route path='/' exact component={ArticleList} />
+    <Route path='/post/:id' component={ArticlePage} />
+    <Route path='/new' component={NewPost} />
+  </BrowserRouter>
 )
 
 export default Routing

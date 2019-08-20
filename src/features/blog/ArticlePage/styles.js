@@ -15,8 +15,4 @@ const ArticleButtonWrapper = styled.div`
 
 const ArticleCommentsWrapper = styled.div``
 
-export {
-  ArticlePageWrapper,
-  ArticleButtonWrapper,
-  ArticleCommentsWrapper
-}
+export { ArticlePageWrapper, ArticleButtonWrapper, ArticleCommentsWrapper }
