@@ -1,45 +1,59 @@
 import styled from 'styled-components'
+import theme from '../../../theme/theme'
 
 const Post = styled.div`
   position: relative;
 
   padding: 100px 0 60px;
+
+  z-index: 3;
 `
 
 const PostHeaderWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
 
   position: relative;
 `
 
 const PostPic = styled.img`
   right: 0;
-  width: 60%;
+  width: 100%;
+  align-self: center;
   background-size: cover;
 `
 
 const PostInfoWrapper = styled.div`
-  position: absolute;
-
-  left: 0;
-  bottom: -10%;
-
-  width: 100%;
-  max-width: 700px;
-
-  padding: 5% 0;
-
-  background: white;
+  margin-top: 100px;
+  margin-bottom: 100px;
 `
 
 const PostHeading = styled.h2`
-  margin-top: 80px;
-  margin-bottom: 80px;
+  position: relative;
+  width: fit-content;
 
-  text-transform: uppercase;
-  font-size: 32px;
-  color: pink;
+  font-family: 'Roboto';
+  font-size: 50px;
+
+  color: ${theme.color.cyan};
+
+  text-transform: capitalize;
+  z-index: 3;
+
+  &:before {
+    position: absolute;
+    display: block;
+    content: '';
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 20px;
+
+    background-color: ${theme.color.gray};
+    z-index: -1;
+  }
 `
 
 const PostDate = styled.p`
@@ -58,13 +72,13 @@ const PostBack = styled.div`
   &:hover {
     transform: translateX(-10px);
     a {
-      color: pink;
+      color: ${theme.color.cyan};
     }
   }
 
   a {
     text-decoration: none !important;
-    color: #000;
+    color: ${theme.color.white};
   }
 `
 

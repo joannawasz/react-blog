@@ -1,13 +1,16 @@
 import styled from 'styled-components'
 import { breakpoints } from '../../../constants'
+import { decorHeading, innerStyled } from '../../../constants/styles'
 
 const ArticleListPage = styled.div``
+
+const ArticleListWrapper = styled.div`
+  ${innerStyled}
+`
 
 const ArticleWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-
-  margin: 0 -20px;
 
   @media (max-width: ${breakpoints.lg}px) {
     flex-direction: column;
@@ -34,4 +37,15 @@ const AddNewPostWrapper = styled.div`
   margin-top: 40px;
 `
 
-export { ArticleWrapper, AddNewPost, ArticleListPage, AddNewPostWrapper }
+const ArticleButton = styled.span`
+  ${decorHeading}
+`
+
+export {
+  ArticleWrapper,
+  ArticleListWrapper,
+  AddNewPost,
+  ArticleListPage,
+  AddNewPostWrapper,
+  ArticleButton,
+}

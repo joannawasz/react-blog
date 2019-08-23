@@ -2,12 +2,17 @@ import React from 'react'
 import moment from 'moment'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
-import { Button1 } from '../../../constants/styles'
-import { ArticleWrapper, ArticleListPage } from './styles'
+import { Button3 } from '../../../constants/styles'
 import { API_URL } from '../../../config'
 import NewPost from '../NewPost'
-import SideBar from '../SideBar'
 import ArticleCard from '../ArticleCard'
+import Footer from '../Footer'
+import {
+  ArticleWrapper,
+  ArticleListPage,
+  ArticleButton,
+  ArticleListWrapper,
+} from './styles'
 
 class ArticleList extends React.Component {
   constructor(props) {
@@ -91,18 +96,23 @@ class ArticleList extends React.Component {
     const { loading, total, articles, isShowing, loadNewPost } = this.state
     return (
       <ArticleListPage>
-        {isShowing && <SideBar />}
         {loading && <p>loading paragraph - zrob jako spinner</p>}
-        {loadNewPost && <ToastContainer />}
-        <Button1 onClick={this.showSideBar}>hop siup</Button1>
-        <NewPost onSubmit={this.addNewPost} />
-        <ArticleWrapper>
-          {articles.map(data => (
-            <ArticleCard {...data} key={data.id} />
-          ))}
-        </ArticleWrapper>
+        <ArticleListWrapper>
+          {loadNewPost && <ToastContainer />}
+          <ArticleButton>
+            <Button3 onClick={this.showSideBar}>Add new post</Button3>
+          </ArticleButton>
+          {isShowing && <NewPost onSubmit={this.addNewPost} />}
+          <ArticleWrapper>
+            {articles.map(data => (
+              <ArticleCard {...data} key={data.id} />
+            ))}
+          </ArticleWrapper>
+        </ArticleListWrapper>
         {articles.length < total && (
-          <Button1 onClick={this.showMore}>Show More</Button1>
+          <Footer className='footerArticleList'>
+            <ArticleButton onClick={this.showMore}>Show More</ArticleButton>
+          </Footer>
         )}
       </ArticleListPage>
     )

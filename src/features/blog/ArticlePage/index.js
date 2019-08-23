@@ -2,15 +2,19 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import PropTypes from 'proptypes'
 import { ToastContainer, toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 import ArticleFull from '../ArticleFull'
 import ArticleComment from '../ArticleComment'
 import CommentForm from '../CommentForm'
+import Footer from '../Footer'
 import { Button1 } from '../../../constants/styles'
 import { API_URL } from '../../../config'
 import {
   ArticlePageWrapper,
+  ArticlePageBox,
   ArticleButtonWrapper,
   ArticleCommentsWrapper,
+  ArticleLinkWrapper,
 } from './styles'
 
 const ArticlePage = ({
@@ -83,23 +87,34 @@ const ArticlePage = ({
     ])
   }
 
+  const nextPost = parseFloat(id) + 1
+  const prevPost = parseFloat(id) - 1
+
   return (
-    <ArticlePageWrapper className='article-page-wrapper'>
-      <ToastContainer />
-      {post && <ArticleFull {...post} />}
-      <CommentForm onSubmit={onAddComment} />
-      <ArticleButtonWrapper>
-        <Button1 onClick={toggleComments}>
-          {isShowing ? 'hide comments' : 'show comments'}
-        </Button1>
-      </ArticleButtonWrapper>
-      {isShowing && (
-        <ArticleCommentsWrapper>
-          {commentList.map(data => (
-            <ArticleComment {...data} key={data.id} />
-          ))}
-        </ArticleCommentsWrapper>
-      )}
+    <ArticlePageWrapper>
+      <ArticlePageBox className='article-page-wrapper'>
+        <ToastContainer />
+        {post && <ArticleFull {...post} />}
+        <CommentForm onSubmit={onAddComment} />
+        <ArticleButtonWrapper>
+          <Button1 onClick={toggleComments}>
+            {isShowing ? 'hide comments' : 'show comments'}
+          </Button1>
+        </ArticleButtonWrapper>
+        {isShowing && (
+          <ArticleCommentsWrapper>
+            {commentList.map(data => (
+              <ArticleComment {...data} key={data.id} />
+            ))}
+          </ArticleCommentsWrapper>
+        )}
+      </ArticlePageBox>
+      <Footer>
+        <ArticleLinkWrapper>
+          <Link to={`${prevPost}`}>Last Post</Link>
+          <Link to={`${nextPost}`}>Next Post</Link>
+        </ArticleLinkWrapper>
+      </Footer>
     </ArticlePageWrapper>
   )
 }
@@ -114,7 +129,7 @@ ArticlePage.propTypes = {
 }
 
 ArticlePage.defaultProps = {
-  id: 23456,
+  id: 11,
 }
 
 export default ArticlePage

@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'proptypes'
-import pic from '../../../images/img-alps.jpg'
+import pic from '../../../images/img-1.jpg'
 import {
   Post,
   PostHeading,
@@ -23,10 +23,10 @@ class ArticleFull extends React.Component {
           <Link to='../'>← Back to main page</Link>
         </PostBack>
         <PostHeaderWrapper>
-          <PostPic src={pic} />
           <PostInfoWrapper>
             <PostHeading>{title}</PostHeading>
           </PostInfoWrapper>
+          <PostPic src={pic} />
         </PostHeaderWrapper>
         <PostBody>{body}</PostBody>
       </Post>
