@@ -7,7 +7,7 @@ import ArticleFull from '../ArticleFull'
 import ArticleComment from '../ArticleComment'
 import CommentForm from '../CommentForm'
 import Footer from '../Footer'
-import { Button1 } from '../../../constants/styles'
+import { ButtonOnClick } from '../../../constants/styles'
 import { API_URL } from '../../../config'
 import {
   ArticlePageWrapper,
@@ -97,9 +97,9 @@ const ArticlePage = ({
         {post && <ArticleFull {...post} />}
         <CommentForm onSubmit={onAddComment} />
         <ArticleButtonWrapper>
-          <Button1 onClick={toggleComments}>
+          <ButtonOnClick onClick={toggleComments}>
             {isShowing ? 'hide comments' : 'show comments'}
-          </Button1>
+          </ButtonOnClick>
         </ArticleButtonWrapper>
         {isShowing && (
           <ArticleCommentsWrapper>

@@ -4,7 +4,6 @@ import { breakpoints } from '../../../constants'
 import { decorHeading } from '../../../constants/styles'
 
 const ArticlePost = styled.div`
-  padding: 20px;
   margin: 20px 0;
 
   width: 100%;

@@ -16,7 +16,6 @@ const FooterBox = styled.div`
   &:before {
     ${captionStyled}
 
-    position: absolute;
     bottom: 20px;
   }
 

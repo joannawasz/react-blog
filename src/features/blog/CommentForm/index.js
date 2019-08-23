@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'proptypes'
-import { Button2 } from '../../../constants/styles'
+import { ButtonSubmit } from '../../../constants/styles'
 import {
   CommentInput,
   CommentTextArea,
@@ -56,7 +56,7 @@ class CommentForm extends React.Component {
           required
         />
         <CommentButton>
-          <Button2>add comment</Button2>
+          <ButtonSubmit>add comment</ButtonSubmit>
         </CommentButton>
       </CommentFormBox>
     )

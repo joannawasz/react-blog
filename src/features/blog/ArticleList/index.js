@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
-import { Button3 } from '../../../constants/styles'
+import { ButtonOnClick } from '../../../constants/styles'
 import { API_URL } from '../../../config'
 import NewPost from '../NewPost'
 import ArticleCard from '../ArticleCard'
@@ -100,7 +100,9 @@ class ArticleList extends React.Component {
         <ArticleListWrapper>
           {loadNewPost && <ToastContainer />}
           <ArticleButton>
-            <Button3 onClick={this.showSideBar}>Add new post</Button3>
+            <ButtonOnClick onClick={this.showSideBar}>
+              Add new post
+            </ButtonOnClick>
           </ArticleButton>
           {isShowing && <NewPost onSubmit={this.addNewPost} />}
           <ArticleWrapper>

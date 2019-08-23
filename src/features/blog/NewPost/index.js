@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'proptypes'
 import pic from '../../../images/img-alps.jpg'
-import { Button2 } from '../../../constants/styles'
+import { ButtonSubmit } from '../../../constants/styles'
 import {
   NewPostForm,
   NewPostInput,
@@ -68,7 +68,7 @@ class NewPost extends React.Component {
         <NewPostTitle>Text Area:</NewPostTitle>
         <NewPostTextArea value={body} onChange={this.onBodyAdd} required />
         <NewPostButton>
-          <Button2>Add new post</Button2>
+          <ButtonSubmit>Add new post</ButtonSubmit>
         </NewPostButton>
       </NewPostForm>
     )

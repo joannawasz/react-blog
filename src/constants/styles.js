@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import theme from '../theme/theme'
 
-const Button1 = styled.button`
+const ButtonOnClick = styled.button`
   border: none;
   background: none;
 
@@ -23,7 +23,7 @@ const Button1 = styled.button`
   }
 `
 
-const Button2 = styled.button`
+const ButtonSubmit = styled.button`
   padding: 0 40px;
   height: 56px;
 
@@ -50,28 +50,6 @@ const Button2 = styled.button`
     background-color: ${theme.color.darkCyan};
 
     box-shadow: 0px 0px 10px ${theme.color.darkCyan};
-  }
-`
-
-const Button3 = styled.button`
-  border: none;
-  background: none;
-
-  font-family: 'Montserrat';
-
-  color: ${theme.color.cyan};
-  font-size: 22px;
-
-  transition: 0.5s all ease;
-
-  cursor: pointer;
-
-  &:hover {
-    color: ${theme.color.darkCyan};
-  }
-
-  &:focus {
-    outline: 0;
   }
 `
 
@@ -148,4 +126,4 @@ const captionStyled = `
   z-index: -1;
 `
 
-export { Button1, Button2, Button3, decorHeading, innerStyled, captionStyled }
+export { ButtonOnClick, ButtonSubmit, decorHeading, innerStyled, captionStyled }
