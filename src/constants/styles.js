@@ -128,6 +128,7 @@ const innerStyled = `
 `
 
 const captionStyled = `
+  position: absolute;
   display: block;
 
   font-family: 'Muli', sans-serif;

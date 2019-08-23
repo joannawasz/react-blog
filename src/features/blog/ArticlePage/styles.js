@@ -8,7 +8,7 @@ const ArticlePageWrapper = styled.div`
 
   &:before {
     ${captionStyled}
-    position: absolute;
+
     content: 'mountains';
 
     top: 0;
