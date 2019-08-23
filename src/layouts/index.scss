@@ -1,15 +1,23 @@
-@import url('https://fonts.googleapis.com/css?family=Exo|Montserrat|Poppins');
+@import url('https://fonts.googleapis.com/css?family=Exo|Montserrat|Poppins|Roboto|Cinzel|Muli');
+@import url('https://fonts.googleapis.com/css?family=Bad+Script|Dancing+Script|Marck+Script|Monoton|Parisienne|Zhi+Mang+Xing&display=swap');
 
-#main {
+body {
   font-family: 'Montserrat';
   font-size: 16px;
 
-  max-width: 1440px;
+  color: #fff;
 
-  padding: 0 20px;
-  margin: 0 auto;
+  background-color: #1f2129;
+
+  margin: 0;
 }
 
-p {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }

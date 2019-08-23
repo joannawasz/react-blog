@@ -1,13 +1,12 @@
 import styled from 'styled-components'
+import theme from '../../../theme/theme'
 import { breakpoints } from '../../../constants'
+import { decorHeading } from '../../../constants/styles'
 
 const ArticlePost = styled.div`
-  padding: 20px;
   margin: 20px 0;
 
-  width: calc(33.3% - 40px);
-
-  background-color: #fff;
+  width: 100%;
 
   @media (max-width: ${breakpoints.lg}px) {
     width: 100%;
@@ -15,27 +14,36 @@ const ArticlePost = styled.div`
   }
 `
 
-const ArticleHeading = styled.h2`
-  color: pink;
-  font-size: 22px;
-  text-transform: uppercase;
-
-  @media (max-width: ${breakpoints.sm}px) {
-    font-size: 18px;
-  }
+const ArticleSvg = styled.svg`
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `
 
-const ArticleInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
+const ArticlePicWrapper = styled.div`
+  position: relative;
+`
 
-  margin-top: 30px;
+const ArticleDefs = styled.defs``
 
-  font-size: 12px;
+const ArticleStop = styled.stop``
 
-  span {
-    font-size: 14px;
-  }
+const ArticleMask = styled.mask``
+
+const ArticleRect = styled.rect``
+
+const ArticleText = styled.text``
+
+const ArticleHeading = styled.h2`
+  ${decorHeading}
+
+  margin-bottom: ${theme.size.gutter};
+
+  font-family: 'muli';
+  text-transform: uppercase;
 `
 
 const ArticleBody = styled.p`
@@ -44,11 +52,13 @@ const ArticleBody = styled.p`
   text-align: justify;
   line-height: 1.5;
 
+  font-size: 20px;
+
   a {
     margin-left: 10px;
 
     text-decoration: none;
-    color: pink;
+    color: ${theme.color.cyan};
 
     transition: 0.5s all ease;
 
@@ -59,9 +69,13 @@ const ArticleBody = styled.p`
 `
 
 const ArticlePic = styled.img`
-  background-size: cover;
   width: 100%;
+  height: 300px;
+
+  background-size: cover;
+
   opacity: 0.7;
+  object-fit: cover;
 `
 
 const ArticleContentWrapper = styled.div`
@@ -74,7 +88,13 @@ export {
   ArticlePost,
   ArticleBody,
   ArticleHeading,
-  ArticleInfo,
   ArticlePic,
   ArticleContentWrapper,
+  ArticlePicWrapper,
+  ArticleSvg,
+  ArticleDefs,
+  ArticleStop,
+  ArticleMask,
+  ArticleRect,
+  ArticleText,
 }

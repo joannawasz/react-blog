@@ -15,6 +15,10 @@ const NewPostInput = styled.input`
   font-family: 'Montserrat';
   font-size: 16px;
 
+  border: 0;
+
+  background-color: transparent;
+
   &:focus {
     outline: 0;
   }
@@ -30,6 +34,10 @@ const NewPostTextArea = styled.textarea`
   font-size: 16px;
   font-family: 'Montserrat';
   line-height: 2;
+
+  border: 0;
+
+  background-color: transparent;
 
   &:focus {
     outline: 0;
