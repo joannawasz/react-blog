@@ -4,7 +4,6 @@ import axios from 'axios'
 import moment from 'moment'
 import { toast } from 'react-toastify'
 import {
-  SHOW_SIDEBAR,
   FETCH_ARTICLES_FAILED,
   FETCH_ARTICLES_STARTED,
   FETCH_ARTICLES_SUCCESS,
@@ -12,24 +11,6 @@ import {
   ADD_NEW_POST_SUCCESS,
 } from './actionTypes'
 import { API_URL } from './index'
-
-const errorMessage = () =>
-  toast('Problem occurred, sorry!', {
-    position: toast.POSITION.TOP_LEFT,
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-  })
-
-const showSidebarAction = () => ({
-  type: SHOW_SIDEBAR,
-})
-
-export const showSidebar = () => dispatch => {
-  dispatch(showSidebarAction())
-}
 
 const fetchArticlesFailedAction = () => ({
   type: FETCH_ARTICLES_FAILED,
@@ -52,7 +33,7 @@ export const fetchArticles = () => async (dispatch, getState) => {
   dispatch(fetchArticlesStartedAction())
   try {
     const { data } = await axios.get(`${API_URL}posts`)
-    const { articles } = getState().mainReducer
+    const { articles } = getState().articleListReducer
     const fetchedArticles = data.slice(articles.length, articles.length + 2)
     const newArticles = [...articles, ...fetchedArticles]
     const total = data.length
@@ -61,7 +42,7 @@ export const fetchArticles = () => async (dispatch, getState) => {
   } catch {
     dispatch(fetchArticlesFailedAction())
 
-    errorMessage()
+    toast('Problem occurred, sorry!')
   }
 }
 
@@ -69,28 +50,42 @@ const addNewPostStartedAction = () => ({
   type: ADD_NEW_POST_STARTED,
 })
 
-const addNewPostSuccessAction = articles => ({
+const addNewPostSuccessAction = (articles, total) => ({
   type: ADD_NEW_POST_SUCCESS,
-  payload: { articles },
+  payload: {
+    articles,
+    total,
+  },
 })
 
 export const addNewPost = newPost => async (dispatch, getState) => {
   dispatch(addNewPostStartedAction())
   try {
-    const { articles, total } = getState().mainReducer
+    const { articles, total } = getState().articleListReducer
     const date = moment().format('YYYY-MM-DD')
+    const newTotal = total + 1
+    console.log(total, 'total', newTotal, 'new total')
 
     const newPostFull = {
       ...newPost,
       created_at: date,
       modified_at: '-',
-      id: total + 1,
     }
-
+    console.log({ newPost }, { newPostFull })
+    console.log(newPostFull.id, 'added post id')
     axios.post(`${API_URL}posts`, newPostFull).then(({ data }) => {
-      dispatch(addNewPostSuccessAction([data, ...articles]))
+      const newArticles = [
+        {
+          ...data,
+          id: newTotal + 1,
+        },
+        ...articles,
+      ]
+      console.log(data)
+
+      dispatch(addNewPostSuccessAction(newArticles, newTotal))
     })
   } catch {
-    errorMessage()
+    toast('Problem occurred, sorry!')
   }
 }

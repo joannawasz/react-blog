@@ -14,19 +14,32 @@ import {
   ArticleButton,
   ArticleListWrapper,
 } from './styles'
-import { showSidebar, addNewPost, fetchArticles } from '../../../config/actions'
+import { addNewPost, fetchArticles } from '../../../config/actions'
 
 class ArticleList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isShowing: false,
+    }
+  }
+
   componentDidMount() {
     const { fetchArticles } = this.props
 
     fetchArticles()
   }
 
+  showSidebar = () => {
+    const { isShowing } = this.state
+    this.setState({
+      isShowing: !isShowing,
+    })
+  }
+
   render() {
+    const { isShowing } = this.state
     const {
-      isShowing,
-      showSidebar,
       fetchArticles,
       addNewPost,
       loadNewPost,
@@ -40,7 +53,9 @@ class ArticleList extends React.Component {
         <ArticleListWrapper>
           {loadNewPost && <ToastContainer />}
           <ArticleButton>
-            <ButtonOnClick onClick={showSidebar}>Add new post</ButtonOnClick>
+            <ButtonOnClick onClick={this.showSidebar}>
+              Add new post
+            </ButtonOnClick>
           </ArticleButton>
           {isShowing && <NewPost onSubmit={addNewPost} />}
           <ArticleWrapper>
@@ -60,28 +75,24 @@ class ArticleList extends React.Component {
 }
 
 ArticleList.propTypes = {
-  isShowing: PropTypes.bool.isRequired,
   total: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
   articles: PropTypes.array.isRequired,
-  showSidebar: PropTypes.func.isRequired,
   fetchArticles: PropTypes.func.isRequired,
   addNewPost: PropTypes.func.isRequired,
   loadNewPost: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
-  isShowing: state.mainReducer.isShowing,
-  total: state.mainReducer.total,
-  loading: state.mainReducer.loading,
-  articles: state.mainReducer.articles,
-  loadNewPost: state.mainReducer.loadNewPost,
+  total: state.articleListReducer.total,
+  loading: state.articleListReducer.loading,
+  articles: state.articleListReducer.articles,
+  loadNewPost: state.articleListReducer.loadNewPost,
 })
 
 export default connect(
   mapStateToProps,
   {
-    showSidebar,
     fetchArticles,
     addNewPost,
   },

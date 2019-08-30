@@ -1,7 +1,4 @@
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
-import ReduxThunk from 'redux-thunk'
 import {
-  SHOW_SIDEBAR,
   FETCH_ARTICLES_FAILED,
   FETCH_ARTICLES_SUCCESS,
   FETCH_ARTICLES_STARTED,
@@ -14,18 +11,12 @@ const defaultState = {
   loadNewPost: false,
   articles: [],
   total: 0,
-  isShowing: false,
 }
 
-const mainReducer = (state = defaultState, action) => {
+const articleListReducer = (state = defaultState, action) => {
   const { type, payload } = action
 
   switch (type) {
-    case SHOW_SIDEBAR:
-      return {
-        ...state,
-        isShowing: !state.isShowing,
-      }
     case FETCH_ARTICLES_STARTED:
       return {
         ...state,
@@ -51,6 +42,7 @@ const mainReducer = (state = defaultState, action) => {
       return {
         ...state,
         articles: payload.articles,
+        total: payload.total,
         loadNewPost: false,
       }
     default:
@@ -58,16 +50,4 @@ const mainReducer = (state = defaultState, action) => {
   }
 }
 
-const store = createStore(
-  combineReducers({
-    mainReducer,
-  }),
-  compose(
-    applyMiddleware(ReduxThunk),
-    // eslint-disable-next-line no-underscore-dangle
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__(),
-  ),
-)
-
-export { store }
+export default articleListReducer
