@@ -64,24 +64,21 @@ export const addNewPost = newPost => async (dispatch, getState) => {
     const { articles, total } = getState().articleListReducer
     const date = moment().format('YYYY-MM-DD')
     const newTotal = total + 1
-    console.log(total, 'total', newTotal, 'new total')
 
     const newPostFull = {
       ...newPost,
       created_at: date,
       modified_at: '-',
     }
-    console.log({ newPost }, { newPostFull })
-    console.log(newPostFull.id, 'added post id')
+
     axios.post(`${API_URL}posts`, newPostFull).then(({ data }) => {
       const newArticles = [
         {
           ...data,
-          id: newTotal + 1,
+          id: newTotal,
         },
         ...articles,
       ]
-      console.log(data)
 
       dispatch(addNewPostSuccessAction(newArticles, newTotal))
     })
