@@ -1,14 +1,20 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react'
-import axios from 'axios'
+/* eslint-disable react/prop-types */
+/* eslint-disable no-shadow */
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'proptypes'
-import { ToastContainer, toast } from 'react-toastify'
+
+import { ToastContainer } from 'react-toastify'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
 import ArticleFull from '../ArticleFull'
 import ArticleComment from '../ArticleComment'
 import CommentForm from '../CommentForm'
 import Footer from '../Footer'
+
 import { ButtonOnClick } from '../../../constants/styles'
-import { API_URL } from '../../../config'
+
+import { addComment, getPostId } from '../../../config/actions'
 import {
   ArticlePageWrapper,
   ArticlePageBox,
@@ -17,74 +23,19 @@ import {
   ArticleLinkWrapper,
 } from './styles'
 
-const ArticlePage = ({
-  match: {
-    params: { id },
-  },
-}) => {
-  const getComments = useMemo(() => {
-    return axios.get(`${API_URL}comments?postId=${id}`)
-  }, [id])
-
-  const getPost = useMemo(() => {
-    return axios.get(`${API_URL}posts/${id}`)
-  }, [id])
-
-  toast.configure({
-    position: toast.POSITION.TOP_LEFT,
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-  })
+const ArticlePage = props => {
+  const { addComment, getPostId, match, post } = props
+  const { id } = match.params
+  const { comments } = post
 
   const [isShowing, setIsShowing] = useState(false)
-  const [commentList, setCommentList] = useState([])
-  const [post, setPost] = useState(null)
-
-  const getArticleData = useCallback(async () => {
-    try {
-      const postData = (await getPost).data
-      setPost(postData)
-    } catch (error) {
-      toast.error('Problem occured, sorry!')
-    }
-  }, [getPost])
-
-  const loadComments = useCallback(async () => {
-    try {
-      const comments = (await getComments).data
-      setCommentList(comments)
-    } catch (error) {
-      toast.error('Problem occured, sorry!')
-    }
-  }, [getComments])
 
   useEffect(() => {
-    getArticleData()
-  }, [getArticleData])
-
-  useEffect(() => {
-    if (!commentList.length) {
-      loadComments()
-    }
-    // eslint-disable-next-line
-  }, [isShowing])
+    getPostId(id)
+  }, [getPostId, id])
 
   const toggleComments = () => {
     setIsShowing(value => !value)
-  }
-
-  const onAddComment = comment => {
-    setCommentList(data => [
-      {
-        ...comment,
-        post_id: data.postId,
-        id: data.length + 1,
-      },
-      ...data,
-    ])
   }
 
   const nextPost = parseFloat(id) + 1
@@ -95,7 +46,7 @@ const ArticlePage = ({
       <ArticlePageBox className='article-page-wrapper'>
         <ToastContainer />
         {post && <ArticleFull {...post} />}
-        <CommentForm onSubmit={onAddComment} />
+        <CommentForm onSubmit={addComment} />
         <ArticleButtonWrapper>
           <ButtonOnClick onClick={toggleComments}>
             {isShowing ? 'hide comments' : 'show comments'}
@@ -103,7 +54,7 @@ const ArticlePage = ({
         </ArticleButtonWrapper>
         {isShowing && (
           <ArticleCommentsWrapper>
-            {commentList.map(data => (
+            {comments.map(data => (
               <ArticleComment {...data} key={data.id} />
             ))}
           </ArticleCommentsWrapper>
@@ -125,6 +76,18 @@ ArticlePage.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  addComment: PropTypes.func.isRequired,
+  getPostId: PropTypes.func.isRequired,
 }
 
-export default ArticlePage
+const mapStateToProps = state => ({
+  post: state.selectedPostReducer,
+})
+
+export default connect(
+  mapStateToProps,
+  {
+    addComment,
+    getPostId,
+  },
+)(ArticlePage)

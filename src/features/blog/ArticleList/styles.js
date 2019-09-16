@@ -27,7 +27,6 @@ const AddNewPost = styled.a`
   font-size: 22px;
   font-family: 'Montserrat';
 
-  border-radius: 20px;
   border: 1px solid pink;
 
   cursor: pointer;

@@ -9,6 +9,9 @@ import {
   FETCH_ARTICLES_SUCCESS,
   ADD_NEW_POST_STARTED,
   ADD_NEW_POST_SUCCESS,
+  ADD_COMMENT,
+  GET_POST,
+  SET_COMMENTS,
 } from './actionTypes'
 import { API_URL } from './index'
 
@@ -85,4 +88,54 @@ export const addNewPost = newPost => async (dispatch, getState) => {
   } catch {
     toast('Problem occurred, sorry!')
   }
+}
+
+const getPostAction = post => ({
+  type: GET_POST,
+  payload: post,
+})
+
+const setCommentsAction = comments => ({
+  type: SET_COMMENTS,
+  payload: { comments },
+})
+
+export const getPostId = postId => async (dispatch, getState) => {
+  const { articles } = getState().articleListReducer
+  const article = articles.find(post => post.id === +postId)
+
+  if (article == null) {
+    try {
+      const { data } = await axios.get(`${API_URL}posts/${postId}`)
+      dispatch(getPostAction(data))
+    } catch (error) {
+      console.log(error)
+    }
+  } else {
+    dispatch(getPostAction(article))
+  }
+
+  try {
+    const { data } = await axios.get(`${API_URL}comments?postId=${postId}`)
+    dispatch(setCommentsAction(data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const addCommentAction = comments => ({
+  type: ADD_COMMENT,
+  payload: { comments },
+})
+
+export const addComment = data => (dispatch, getState) => {
+  const { comments } = getState().selectedPostReducer
+  const newComment = {
+    ...data,
+    post_id: comments.postId,
+    id: comments.length + 1,
+  }
+  console.log(data, newComment)
+
+  dispatch(addCommentAction([...comments, newComment]))
 }
