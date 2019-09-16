@@ -14,7 +14,7 @@ import Footer from '../Footer'
 
 import { ButtonOnClick } from '../../../constants/styles'
 
-import { addComment, getPostId } from '../../../config/actions'
+import { addComment, getPost } from '../../../config/actions'
 import {
   ArticlePageWrapper,
   ArticlePageBox,
@@ -24,15 +24,15 @@ import {
 } from './styles'
 
 const ArticlePage = props => {
-  const { addComment, getPostId, match, post } = props
+  const { addComment, getPost, match, post } = props
   const { id } = match.params
   const { comments } = post
 
   const [isShowing, setIsShowing] = useState(false)
 
   useEffect(() => {
-    getPostId(id)
-  }, [getPostId, id])
+    getPost(id)
+  }, [getPost, id])
 
   const toggleComments = () => {
     setIsShowing(value => !value)
@@ -77,7 +77,7 @@ ArticlePage.propTypes = {
     }),
   }).isRequired,
   addComment: PropTypes.func.isRequired,
-  getPostId: PropTypes.func.isRequired,
+  getPost: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -88,6 +88,6 @@ export default connect(
   mapStateToProps,
   {
     addComment,
-    getPostId,
+    getPost,
   },
 )(ArticlePage)

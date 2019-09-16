@@ -100,7 +100,7 @@ const setCommentsAction = comments => ({
   payload: { comments },
 })
 
-export const getPostId = postId => async (dispatch, getState) => {
+export const getPost = postId => async (dispatch, getState) => {
   const { articles } = getState().articleListReducer
   const article = articles.find(post => post.id === +postId)
 
