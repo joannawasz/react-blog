@@ -4,9 +4,15 @@ import { breakpoints } from '../../../constants'
 import { decorHeading } from '../../../constants/styles'
 
 const ArticlePost = styled.div`
+  position: relative;
+
   margin: 20px 0;
 
   width: 100%;
+
+  &:last-child {
+    margin-bottom: calc(${theme.size.gutter} * 4);
+  }
 
   @media (max-width: ${breakpoints.lg}px) {
     width: 100%;
@@ -17,10 +23,13 @@ const ArticlePost = styled.div`
 const ArticleSvg = styled.svg`
   display: block;
   position: absolute;
+
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+
+  opacity: 0;
 `
 
 const ArticlePicWrapper = styled.div`
